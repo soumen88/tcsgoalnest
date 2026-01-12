@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tcsgoalnest/ui/screens/display_common_widgets_screen.dart';
 import 'package:tcsgoalnest/ui/screens/key_value_store_screen.dart';
 import 'package:tcsgoalnest/ui/screens/stream_example_screen.dart';
 
@@ -10,7 +11,8 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: KeyValueStoreScreen(),
+      //home: KeyValueStoreScreen(),
+      home: DisplayCommonWidgetsScreen(),
     );
   }
 

@@ -55,7 +55,18 @@ class _KeyValueStoreScreenState extends State<KeyValueStoreScreen> {
               ),
               FilledButton(
                   onPressed: (){
-                    String? value = _manager.getValueFromKeyStore(objectKeyName: "Key One");
+                    /*KeyValueStoreData keyValueStore = KeyValueStoreData(
+                        keyName: "Age",
+                        value: "33",
+                        defaultValue: "25"
+                    );*/
+                    _manager.insert(objectKeyName: "AgeFour", objecValue: "33", defaultValue: "25");
+                  },
+                  child: Text("Insert with default")
+              ),
+              FilledButton(
+                  onPressed: (){
+                    String? value = _manager.getValueFromKeyStore(objectKeyName: "AgeOne");
                     _logger.log(TAG: _TAG, message: "Value found $value");
                   },
                   child: Text("Read Data")
@@ -71,13 +82,22 @@ class _KeyValueStoreScreenState extends State<KeyValueStoreScreen> {
                       return ListView.builder(
                           itemCount: dataList.length,
                           itemBuilder: (BuildContext context, int index){
+                            KeyValueStoreData keyStoreData = dataList[index];
                             return ListTile(
-                              title: Text("Saved in DB ${dataList[index].value}"),
+                              title: Text("Saved in DB ${keyStoreData.value}"),
                               subtitle: Row(
                                 children: [
-
-                                  Text("Key name ${dataList[index].keyName}"),
-                                  Text("Is key Active ${dataList[index].isKeyActive}")
+                                  Text("Key name ${keyStoreData.keyName}"),
+                                  Builder(
+                                      builder: (BuildContext context){
+                                        if(keyStoreData.defaultValue != null){
+                                          return Text("Default value ${keyStoreData.defaultValue}");
+                                        }
+                                        else{
+                                          return SizedBox.shrink();
+                                        }
+                                      }
+                                  ),
                                 ],
                               ),
                             );

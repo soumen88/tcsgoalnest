@@ -17,8 +17,10 @@ class KeyValueStoreManager {
     keyValueBox = objectBoxStore.box<KeyValueStoreData>();
   }
 
-  Future<int> insert({required String objectKeyName, required String objecValue}) async{
-    int insertedRowId = keyValueBox.put(KeyValueStoreData(keyName: objectKeyName, value: objecValue));
+  Future<int> insert({required String objectKeyName, required String objecValue, String? defaultValue}) async{
+    var keyValueStore = KeyValueStoreData(keyName: objectKeyName, value: objecValue, defaultValue: defaultValue);
+    _logger.log(TAG: _TAG, message: "Key Value store data getting inserted $keyValueStore");
+    int insertedRowId = keyValueBox.put(keyValueStore);
     _logger.log(TAG: _TAG, message: "inserted row id $insertedRowId");
     return Future.value(insertedRowId);
   }

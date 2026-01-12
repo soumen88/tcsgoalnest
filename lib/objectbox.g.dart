@@ -22,7 +22,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
     id: const obx_int.IdUid(1, 9091616633448040374),
     name: 'KeyValueStoreData',
-    lastPropertyId: const obx_int.IdUid(4, 7674852691405824369),
+    lastPropertyId: const obx_int.IdUid(6, 1267079675268533712),
     flags: 0,
     properties: <obx_int.ModelProperty>[
       obx_int.ModelProperty(
@@ -44,9 +44,9 @@ final _entities = <obx_int.ModelEntity>[
         flags: 0,
       ),
       obx_int.ModelProperty(
-        id: const obx_int.IdUid(4, 7674852691405824369),
-        name: 'isKeyActive',
-        type: 1,
+        id: const obx_int.IdUid(5, 4701697490493537585),
+        name: 'defaultValue',
+        type: 9,
         flags: 0,
       ),
     ],
@@ -104,7 +104,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
     lastSequenceId: const obx_int.IdUid(0, 0),
     retiredEntityUids: const [],
     retiredIndexUids: const [],
-    retiredPropertyUids: const [],
+    retiredPropertyUids: const [7674852691405824369, 1267079675268533712],
     retiredRelationUids: const [],
     modelVersion: 5,
     modelVersionParserMinimum: 5,
@@ -123,11 +123,14 @@ obx_int.ModelDefinition getObjectBoxModel() {
       objectToFB: (KeyValueStoreData object, fb.Builder fbb) {
         final keyNameOffset = fbb.writeString(object.keyName);
         final valueOffset = fbb.writeString(object.value);
-        fbb.startTable(5);
+        final defaultValueOffset = object.defaultValue == null
+            ? null
+            : fbb.writeString(object.defaultValue!);
+        fbb.startTable(7);
         fbb.addInt64(0, object.keyId);
         fbb.addOffset(1, keyNameOffset);
         fbb.addOffset(2, valueOffset);
-        fbb.addBool(3, object.isKeyActive);
+        fbb.addOffset(4, defaultValueOffset);
         fbb.finish(fbb.endTable());
         return object.keyId;
       },
@@ -146,17 +149,14 @@ obx_int.ModelDefinition getObjectBoxModel() {
         final valueParam = const fb.StringReader(
           asciiOptimization: true,
         ).vTableGet(buffer, rootOffset, 8, '');
-        final isKeyActiveParam = const fb.BoolReader().vTableGet(
-          buffer,
-          rootOffset,
-          10,
-          false,
-        );
+        final defaultValueParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGetNullable(buffer, rootOffset, 12);
         final object = KeyValueStoreData(
           keyId: keyIdParam,
           keyName: keyNameParam,
           value: valueParam,
-          isKeyActive: isKeyActiveParam,
+          defaultValue: defaultValueParam,
         );
 
         return object;
@@ -184,8 +184,8 @@ class KeyValueStoreData_ {
     _entities[0].properties[2],
   );
 
-  /// See [KeyValueStoreData.isKeyActive].
-  static final isKeyActive = obx.QueryBooleanProperty<KeyValueStoreData>(
+  /// See [KeyValueStoreData.defaultValue].
+  static final defaultValue = obx.QueryStringProperty<KeyValueStoreData>(
     _entities[0].properties[3],
   );
 }

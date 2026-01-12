@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:9091616633448040374",
-      "lastPropertyId": "4:7674852691405824369",
+      "lastPropertyId": "6:1267079675268533712",
       "name": "KeyValueStoreData",
       "properties": [
         {
@@ -25,9 +25,9 @@
           "type": 9
         },
         {
-          "id": "4:7674852691405824369",
-          "name": "isKeyActive",
-          "type": 1
+          "id": "5:4701697490493537585",
+          "name": "defaultValue",
+          "type": 9
         }
       ],
       "relations": []
@@ -41,7 +41,10 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    7674852691405824369,
+    1267079675268533712
+  ],
   "retiredRelationUids": [],
   "version": 1
 }
