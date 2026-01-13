@@ -44,6 +44,12 @@ dependencies:
   #Creating internal storage directory
   path_provider: ^2.1.5
 
+  #Manging navigation between the screens
+  auto_route: ^11.1.0
+
+  #Smooth Animations to show on the app
+  lottie: ^3.3.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -60,6 +66,9 @@ dev_dependencies:
 
   #Automatic query generator for nosql
   objectbox_generator: ^5.1.0
+
+  #Screen navigation route generator
+  auto_route_generator: ^10.4.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -78,6 +87,8 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/fonts/
+    - assets/images/
+    - assets/animations/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 

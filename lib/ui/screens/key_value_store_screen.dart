@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:tcsgoalnest/core/schema/key_value_store_data.dart';
 import 'package:tcsgoalnest/core/table/key_value_store_manager.dart';
 import 'package:tcsgoalnest/core/utils/logger_util.dart';
 
+@RoutePage()
 class KeyValueStoreScreen extends StatefulWidget {
   const KeyValueStoreScreen({super.key});
 

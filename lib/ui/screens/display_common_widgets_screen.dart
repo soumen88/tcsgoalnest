@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:tcsgoalnest/core/utils/logger_util.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/bold_text_widget.dart';
@@ -6,6 +7,7 @@ import 'package:tcsgoalnest/ui/commonwidgets/italic_text_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/outline_button_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/regular_text_widget.dart';
 
+@RoutePage()
 class DisplayCommonWidgetsScreen extends StatelessWidget {
   final _logger = LoggerUtil();
   final _TAG = "DisplayCommonWidgetsScreen";
