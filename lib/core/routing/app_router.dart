@@ -5,6 +5,7 @@ import '../../ui/screens/display_common_widgets_screen.dart';
 import '../../ui/screens/key_value_store_screen.dart';
 import '../../ui/screens/splash_screen.dart';
 import '../../ui/screens/stream_example_screen.dart';
+import '../../ui/screens/home_screen.dart';
 
 
 part 'app_router.gr.dart';
@@ -32,6 +33,10 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
         page: StreamExampleRoute.page,
         path: "/streamexample"
+    ),
+    AutoRoute(
+        page: HomeRoute.page,
+        path: "/home"
     ),
   ];
 }
