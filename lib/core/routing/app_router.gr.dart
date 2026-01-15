@@ -59,6 +59,22 @@ class KeyValueStoreRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PersonCrudScreen]
+class PersonCrudRoute extends PageRouteInfo<void> {
+  const PersonCrudRoute({List<PageRouteInfo>? children})
+    : super(PersonCrudRoute.name, initialChildren: children);
+
+  static const String name = 'PersonCrudRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PersonCrudScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [SplashScreen]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})

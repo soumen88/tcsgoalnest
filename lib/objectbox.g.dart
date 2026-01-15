@@ -15,6 +15,7 @@ import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'core/schema/key_value_store_data.dart';
+import 'core/schema/person_store_data.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -46,6 +47,46 @@ final _entities = <obx_int.ModelEntity>[
       obx_int.ModelProperty(
         id: const obx_int.IdUid(5, 4701697490493537585),
         name: 'defaultValue',
+        type: 9,
+        flags: 0,
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[],
+  ),
+  obx_int.ModelEntity(
+    id: const obx_int.IdUid(2, 8794158497278557681),
+    name: 'PersonStoreData',
+    lastPropertyId: const obx_int.IdUid(5, 4403983905597986307),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 4143108571151452684),
+        name: 'personId',
+        type: 6,
+        flags: 1,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(2, 3453169864485762507),
+        name: 'personName',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(3, 2207615828984540389),
+        name: 'personEmail',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 3744185936353417413),
+        name: 'personPhone',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(5, 4403983905597986307),
+        name: 'personAddress',
         type: 9,
         flags: 0,
       ),
@@ -98,7 +139,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
     // Typically, this is done with `dart run build_runner build`.
     generatorVersion: obx_int.GeneratorVersion.v2025_12_16,
     entities: _entities,
-    lastEntityId: const obx_int.IdUid(1, 9091616633448040374),
+    lastEntityId: const obx_int.IdUid(2, 8794158497278557681),
     lastIndexId: const obx_int.IdUid(0, 0),
     lastRelationId: const obx_int.IdUid(0, 0),
     lastSequenceId: const obx_int.IdUid(0, 0),
@@ -162,6 +203,60 @@ obx_int.ModelDefinition getObjectBoxModel() {
         return object;
       },
     ),
+    PersonStoreData: obx_int.EntityDefinition<PersonStoreData>(
+      model: _entities[1],
+      toOneRelations: (PersonStoreData object) => [],
+      toManyRelations: (PersonStoreData object) => {},
+      getId: (PersonStoreData object) => object.personId,
+      setId: (PersonStoreData object, int id) {
+        object.personId = id;
+      },
+      objectToFB: (PersonStoreData object, fb.Builder fbb) {
+        final personNameOffset = fbb.writeString(object.personName);
+        final personEmailOffset = fbb.writeString(object.personEmail);
+        final personPhoneOffset = fbb.writeString(object.personPhone);
+        final personAddressOffset = fbb.writeString(object.personAddress);
+        fbb.startTable(6);
+        fbb.addInt64(0, object.personId);
+        fbb.addOffset(1, personNameOffset);
+        fbb.addOffset(2, personEmailOffset);
+        fbb.addOffset(3, personPhoneOffset);
+        fbb.addOffset(4, personAddressOffset);
+        fbb.finish(fbb.endTable());
+        return object.personId;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+        final personIdParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          4,
+          0,
+        );
+        final personNameParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 6, '');
+        final personEmailParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 8, '');
+        final personPhoneParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 10, '');
+        final personAddressParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 12, '');
+        final object = PersonStoreData(
+          personId: personIdParam,
+          personName: personNameParam,
+          personEmail: personEmailParam,
+          personPhone: personPhoneParam,
+          personAddress: personAddressParam,
+        );
+
+        return object;
+      },
+    ),
   };
 
   return obx_int.ModelDefinition(model, bindings);
@@ -187,5 +282,33 @@ class KeyValueStoreData_ {
   /// See [KeyValueStoreData.defaultValue].
   static final defaultValue = obx.QueryStringProperty<KeyValueStoreData>(
     _entities[0].properties[3],
+  );
+}
+
+/// [PersonStoreData] entity fields to define ObjectBox queries.
+class PersonStoreData_ {
+  /// See [PersonStoreData.personId].
+  static final personId = obx.QueryIntegerProperty<PersonStoreData>(
+    _entities[1].properties[0],
+  );
+
+  /// See [PersonStoreData.personName].
+  static final personName = obx.QueryStringProperty<PersonStoreData>(
+    _entities[1].properties[1],
+  );
+
+  /// See [PersonStoreData.personEmail].
+  static final personEmail = obx.QueryStringProperty<PersonStoreData>(
+    _entities[1].properties[2],
+  );
+
+  /// See [PersonStoreData.personPhone].
+  static final personPhone = obx.QueryStringProperty<PersonStoreData>(
+    _entities[1].properties[3],
+  );
+
+  /// See [PersonStoreData.personAddress].
+  static final personAddress = obx.QueryStringProperty<PersonStoreData>(
+    _entities[1].properties[4],
   );
 }

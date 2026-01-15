@@ -31,9 +31,43 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "2:8794158497278557681",
+      "lastPropertyId": "5:4403983905597986307",
+      "name": "PersonStoreData",
+      "properties": [
+        {
+          "id": "1:4143108571151452684",
+          "name": "personId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3453169864485762507",
+          "name": "personName",
+          "type": 9
+        },
+        {
+          "id": "3:2207615828984540389",
+          "name": "personEmail",
+          "type": 9
+        },
+        {
+          "id": "4:3744185936353417413",
+          "name": "personPhone",
+          "type": 9
+        },
+        {
+          "id": "5:4403983905597986307",
+          "name": "personAddress",
+          "type": 9
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "1:9091616633448040374",
+  "lastEntityId": "2:8794158497278557681",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
