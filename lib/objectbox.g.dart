@@ -55,38 +55,32 @@ final _entities = <obx_int.ModelEntity>[
     backlinks: <obx_int.ModelBacklink>[],
   ),
   obx_int.ModelEntity(
-    id: const obx_int.IdUid(2, 8794158497278557681),
+    id: const obx_int.IdUid(3, 6002816074833289441),
     name: 'PersonStoreData',
-    lastPropertyId: const obx_int.IdUid(5, 4403983905597986307),
+    lastPropertyId: const obx_int.IdUid(4, 6523744231814229197),
     flags: 0,
     properties: <obx_int.ModelProperty>[
       obx_int.ModelProperty(
-        id: const obx_int.IdUid(1, 4143108571151452684),
+        id: const obx_int.IdUid(1, 5794725333635122836),
         name: 'personId',
         type: 6,
         flags: 1,
       ),
       obx_int.ModelProperty(
-        id: const obx_int.IdUid(2, 3453169864485762507),
+        id: const obx_int.IdUid(2, 6008990428660585266),
         name: 'personName',
         type: 9,
         flags: 0,
       ),
       obx_int.ModelProperty(
-        id: const obx_int.IdUid(3, 2207615828984540389),
+        id: const obx_int.IdUid(3, 763221525240517549),
+        name: 'age',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 6523744231814229197),
         name: 'personEmail',
-        type: 9,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(4, 3744185936353417413),
-        name: 'personPhone',
-        type: 9,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(5, 4403983905597986307),
-        name: 'personAddress',
         type: 9,
         flags: 0,
       ),
@@ -139,13 +133,21 @@ obx_int.ModelDefinition getObjectBoxModel() {
     // Typically, this is done with `dart run build_runner build`.
     generatorVersion: obx_int.GeneratorVersion.v2025_12_16,
     entities: _entities,
-    lastEntityId: const obx_int.IdUid(2, 8794158497278557681),
+    lastEntityId: const obx_int.IdUid(3, 6002816074833289441),
     lastIndexId: const obx_int.IdUid(0, 0),
     lastRelationId: const obx_int.IdUid(0, 0),
     lastSequenceId: const obx_int.IdUid(0, 0),
-    retiredEntityUids: const [],
+    retiredEntityUids: const [8794158497278557681],
     retiredIndexUids: const [],
-    retiredPropertyUids: const [7674852691405824369, 1267079675268533712],
+    retiredPropertyUids: const [
+      7674852691405824369,
+      1267079675268533712,
+      4143108571151452684,
+      3453169864485762507,
+      2207615828984540389,
+      3744185936353417413,
+      4403983905597986307,
+    ],
     retiredRelationUids: const [],
     modelVersion: 5,
     modelVersionParserMinimum: 5,
@@ -214,14 +216,11 @@ obx_int.ModelDefinition getObjectBoxModel() {
       objectToFB: (PersonStoreData object, fb.Builder fbb) {
         final personNameOffset = fbb.writeString(object.personName);
         final personEmailOffset = fbb.writeString(object.personEmail);
-        final personPhoneOffset = fbb.writeString(object.personPhone);
-        final personAddressOffset = fbb.writeString(object.personAddress);
-        fbb.startTable(6);
+        fbb.startTable(5);
         fbb.addInt64(0, object.personId);
         fbb.addOffset(1, personNameOffset);
-        fbb.addOffset(2, personEmailOffset);
-        fbb.addOffset(3, personPhoneOffset);
-        fbb.addOffset(4, personAddressOffset);
+        fbb.addInt64(2, object.age);
+        fbb.addOffset(3, personEmailOffset);
         fbb.finish(fbb.endTable());
         return object.personId;
       },
@@ -237,21 +236,20 @@ obx_int.ModelDefinition getObjectBoxModel() {
         final personNameParam = const fb.StringReader(
           asciiOptimization: true,
         ).vTableGet(buffer, rootOffset, 6, '');
+        final ageParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          8,
+          0,
+        );
         final personEmailParam = const fb.StringReader(
           asciiOptimization: true,
-        ).vTableGet(buffer, rootOffset, 8, '');
-        final personPhoneParam = const fb.StringReader(
-          asciiOptimization: true,
         ).vTableGet(buffer, rootOffset, 10, '');
-        final personAddressParam = const fb.StringReader(
-          asciiOptimization: true,
-        ).vTableGet(buffer, rootOffset, 12, '');
         final object = PersonStoreData(
           personId: personIdParam,
           personName: personNameParam,
+          age: ageParam,
           personEmail: personEmailParam,
-          personPhone: personPhoneParam,
-          personAddress: personAddressParam,
         );
 
         return object;
@@ -297,18 +295,13 @@ class PersonStoreData_ {
     _entities[1].properties[1],
   );
 
-  /// See [PersonStoreData.personEmail].
-  static final personEmail = obx.QueryStringProperty<PersonStoreData>(
+  /// See [PersonStoreData.age].
+  static final age = obx.QueryIntegerProperty<PersonStoreData>(
     _entities[1].properties[2],
   );
 
-  /// See [PersonStoreData.personPhone].
-  static final personPhone = obx.QueryStringProperty<PersonStoreData>(
+  /// See [PersonStoreData.personEmail].
+  static final personEmail = obx.QueryStringProperty<PersonStoreData>(
     _entities[1].properties[3],
-  );
-
-  /// See [PersonStoreData.personAddress].
-  static final personAddress = obx.QueryStringProperty<PersonStoreData>(
-    _entities[1].properties[4],
   );
 }

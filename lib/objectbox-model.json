@@ -33,51 +33,53 @@
       "relations": []
     },
     {
-      "id": "2:8794158497278557681",
-      "lastPropertyId": "5:4403983905597986307",
+      "id": "3:6002816074833289441",
+      "lastPropertyId": "4:6523744231814229197",
       "name": "PersonStoreData",
       "properties": [
         {
-          "id": "1:4143108571151452684",
+          "id": "1:5794725333635122836",
           "name": "personId",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:3453169864485762507",
+          "id": "2:6008990428660585266",
           "name": "personName",
           "type": 9
         },
         {
-          "id": "3:2207615828984540389",
+          "id": "3:763221525240517549",
+          "name": "age",
+          "type": 6
+        },
+        {
+          "id": "4:6523744231814229197",
           "name": "personEmail",
-          "type": 9
-        },
-        {
-          "id": "4:3744185936353417413",
-          "name": "personPhone",
-          "type": 9
-        },
-        {
-          "id": "5:4403983905597986307",
-          "name": "personAddress",
           "type": 9
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "2:8794158497278557681",
+  "lastEntityId": "3:6002816074833289441",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
-  "retiredEntityUids": [],
+  "retiredEntityUids": [
+    8794158497278557681
+  ],
   "retiredIndexUids": [],
   "retiredPropertyUids": [
     7674852691405824369,
-    1267079675268533712
+    1267079675268533712,
+    4143108571151452684,
+    3453169864485762507,
+    2207615828984540389,
+    3744185936353417413,
+    4403983905597986307
   ],
   "retiredRelationUids": [],
   "version": 1

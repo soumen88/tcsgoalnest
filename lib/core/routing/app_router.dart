@@ -1,12 +1,14 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:tcsgoalnest/ui/screens/person_singleton_db_insert_screen.dart';
 
 import '../../ui/screens/display_common_widgets_screen.dart';
 import '../../ui/screens/key_value_store_screen.dart';
-import '../../ui/screens/person_crud_screen.dart';
 import '../../ui/screens/splash_screen.dart';
 import '../../ui/screens/stream_example_screen.dart';
 import '../../ui/screens/home_screen.dart';
+import '../../ui/screens/person_singleton_db_insert_screen.dart';
+import '../../ui/screens/person_singleton_db_read_screen.dart';
 
 
 part 'app_router.gr.dart';
@@ -40,8 +42,12 @@ class AppRouter extends RootStackRouter {
         path: "/home"
     ),
     AutoRoute(
-        page: PersonCrudRoute.page,
-        path: "/person"
+        page: PersonSingletonDbInsertRoute.page,
+        path: "/personInsert"
+    ),
+    AutoRoute(
+        page: PersonSingletonDbReadRoute.page,
+        path: "/personRead"
     ),
   ];
 }

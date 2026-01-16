@@ -5,7 +5,8 @@ class RegularTextWidget extends StatelessWidget {
   final String textToDisplay;
   final TextAlign textAlignment;
   final Color textColor;
-  const RegularTextWidget({super.key, required this.textToDisplay, this.textAlignment = TextAlign.left, this.textColor = ColorConstants.kBlackColor});
+  final double fontSize;
+  const RegularTextWidget({super.key, required this.textToDisplay, this.textAlignment = TextAlign.left, this.textColor = ColorConstants.kBlackColor, this.fontSize = 16});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class RegularTextWidget extends StatelessWidget {
       textToDisplay,
       style: TextStyle(
         color: textColor,
-        fontSize: 16
+        fontSize: fontSize
       ),
       textAlign: textAlignment,
     );

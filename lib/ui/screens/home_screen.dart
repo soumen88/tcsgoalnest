@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
               FilledButtonWidget(
                 buttonCaption: "Display Person Example",
                 onButtonPress: () {
-                  context.router.push(const PersonCrudRoute());
+                  context.router.push(const PersonSingletonDbInsertRoute());
                 },
               ),
             ],

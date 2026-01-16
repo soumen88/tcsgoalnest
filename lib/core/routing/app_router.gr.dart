@@ -59,17 +59,33 @@ class KeyValueStoreRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [PersonCrudScreen]
-class PersonCrudRoute extends PageRouteInfo<void> {
-  const PersonCrudRoute({List<PageRouteInfo>? children})
-    : super(PersonCrudRoute.name, initialChildren: children);
+/// [PersonSingletonDbInsertScreen]
+class PersonSingletonDbInsertRoute extends PageRouteInfo<void> {
+  const PersonSingletonDbInsertRoute({List<PageRouteInfo>? children})
+    : super(PersonSingletonDbInsertRoute.name, initialChildren: children);
 
-  static const String name = 'PersonCrudRoute';
+  static const String name = 'PersonSingletonDbInsertRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const PersonCrudScreen();
+      return PersonSingletonDbInsertScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [PersonSingletonDbReadScreen]
+class PersonSingletonDbReadRoute extends PageRouteInfo<void> {
+  const PersonSingletonDbReadRoute({List<PageRouteInfo>? children})
+    : super(PersonSingletonDbReadRoute.name, initialChildren: children);
+
+  static const String name = 'PersonSingletonDbReadRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return PersonSingletonDbReadScreen();
     },
   );
 }
