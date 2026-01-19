@@ -9,6 +9,9 @@ import '../../ui/screens/stream_example_screen.dart';
 import '../../ui/screens/home_screen.dart';
 import '../../ui/screens/person_singleton_db_insert_screen.dart';
 import '../../ui/screens/person_singleton_db_read_screen.dart';
+import '../../ui/screens/bottom_sheet_navigation_screen.dart';
+import '../../ui/screens/features_screen.dart';
+import '../../ui/screens/track_screen.dart';
 
 
 part 'app_router.gr.dart';
@@ -37,10 +40,7 @@ class AppRouter extends RootStackRouter {
         page: StreamExampleRoute.page,
         path: "/streamexample"
     ),
-    AutoRoute(
-        page: HomeRoute.page,
-        path: "/home"
-    ),
+
     AutoRoute(
         page: PersonSingletonDbInsertRoute.page,
         path: "/personInsert"
@@ -49,5 +49,23 @@ class AppRouter extends RootStackRouter {
         page: PersonSingletonDbReadRoute.page,
         path: "/personRead"
     ),
+    AutoRoute(
+        page: BottomSheetNavigationRoute.page,
+        path: '/bottomsheetpage',
+        children: [
+          AutoRoute(
+            page: FeaturesRoute.page,
+            path: "features"
+          ),
+          AutoRoute(
+              page: HomeRoute.page,
+              path: "home"
+          ),
+          AutoRoute(
+              page: TrackRoute.page,
+              path: "tracker"
+          ),
+        ]
+    )
   ];
 }

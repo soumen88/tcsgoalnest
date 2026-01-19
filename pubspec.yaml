@@ -53,6 +53,15 @@ dependencies:
   #Dependency injection in flutter
   injectable: ^2.7.1+4
 
+  #Display beautiful log statements
+  logger: ^2.6.2
+
+  #Bottom navigation animations
+  salomon_bottom_bar: ^3.3.2
+
+  #Creating slider navigations in flutter
+  introduction_screen: ^4.0.0
+
 dependency_overrides:
   analyzer: ^9.0.0
 

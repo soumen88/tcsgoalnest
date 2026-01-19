@@ -10,15 +10,17 @@ import 'package:tcsgoalnest/ui/commonwidgets/outline_button_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/regular_text_widget.dart';
 
 import '../../core/dependency/injectable_setup.dart';
+import '../../core/utils/pretty_logger_util.dart';
 
 @RoutePage()
 class PersonSingletonDbInsertScreen extends StatelessWidget {
-  final _logger = LoggerUtil();
+  final _logger = locator<PrettyLoggerUtil>();
   final _TAG = "PersonSingletonDbInsertScreen";
   var personDataManagerOne = PersonDataManager();
   var personDataManagerTwo = PersonDataManager();
   var personStoreManagerOne = locator<PersonStoreManager>();
   var personStoreManagerTwo = locator<PersonStoreManager>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

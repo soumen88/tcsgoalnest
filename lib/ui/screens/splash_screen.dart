@@ -67,7 +67,8 @@ class SplashScreen extends StatelessWidget {
           child: BottomNavigationButton(
               buttonCaption: "Let's Get Started",
               onButtonPress: (){
-                  context.router.push(const HomeRoute());
+                  //context.router.push(const HomeRoute());
+                  context.router.push(const BottomSheetNavigationRoute());
               },
           )
       ),

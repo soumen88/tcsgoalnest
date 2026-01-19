@@ -11,6 +11,22 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [BottomSheetNavigationScreen]
+class BottomSheetNavigationRoute extends PageRouteInfo<void> {
+  const BottomSheetNavigationRoute({List<PageRouteInfo>? children})
+    : super(BottomSheetNavigationRoute.name, initialChildren: children);
+
+  static const String name = 'BottomSheetNavigationRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return BottomSheetNavigationScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [DisplayCommonWidgetsScreen]
 class DisplayCommonWidgetsRoute extends PageRouteInfo<void> {
   const DisplayCommonWidgetsRoute({List<PageRouteInfo>? children})
@@ -22,6 +38,22 @@ class DisplayCommonWidgetsRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return DisplayCommonWidgetsScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [FeaturesScreen]
+class FeaturesRoute extends PageRouteInfo<void> {
+  const FeaturesRoute({List<PageRouteInfo>? children})
+    : super(FeaturesRoute.name, initialChildren: children);
+
+  static const String name = 'FeaturesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return FeaturesScreen();
     },
   );
 }
@@ -118,6 +150,22 @@ class StreamExampleRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return StreamExampleScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [TrackScreen]
+class TrackRoute extends PageRouteInfo<void> {
+  const TrackRoute({List<PageRouteInfo>? children})
+    : super(TrackRoute.name, initialChildren: children);
+
+  static const String name = 'TrackRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const TrackScreen();
     },
   );
 }
