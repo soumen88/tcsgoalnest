@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:tcsgoalnest/core/constants/app_constants.dart';
 import 'package:tcsgoalnest/core/constants/color_constants.dart';
 import 'package:tcsgoalnest/core/constants/image_constants.dart';
+import 'package:tcsgoalnest/core/routing/app_router.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/regular_text_widget.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
@@ -33,6 +35,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
               ],
             ),
             GestureDetector(
+              onTap: (){
+                context.router.push(const ExamplesRoute());
+              },
               child: Image.asset(
                   ImageConstants.kLogoOnly,
                   height: 50,

@@ -43,6 +43,22 @@ class DisplayCommonWidgetsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ExamplesScreen]
+class ExamplesRoute extends PageRouteInfo<void> {
+  const ExamplesRoute({List<PageRouteInfo>? children})
+    : super(ExamplesRoute.name, initialChildren: children);
+
+  static const String name = 'ExamplesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ExamplesScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [FeaturesScreen]
 class FeaturesRoute extends PageRouteInfo<void> {
   const FeaturesRoute({List<PageRouteInfo>? children})
@@ -69,23 +85,7 @@ class HomeRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const HomeScreen();
-    },
-  );
-}
-
-/// generated route for
-/// [KeyValueStoreScreen]
-class KeyValueStoreRoute extends PageRouteInfo<void> {
-  const KeyValueStoreRoute({List<PageRouteInfo>? children})
-    : super(KeyValueStoreRoute.name, initialChildren: children);
-
-  static const String name = 'KeyValueStoreRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const KeyValueStoreScreen();
+      return HomeScreen();
     },
   );
 }

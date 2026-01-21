@@ -3,7 +3,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:tcsgoalnest/ui/screens/person_singleton_db_insert_screen.dart';
 
 import '../../ui/screens/display_common_widgets_screen.dart';
-import '../../ui/screens/key_value_store_screen.dart';
 import '../../ui/screens/splash_screen.dart';
 import '../../ui/screens/stream_example_screen.dart';
 import '../../ui/screens/home_screen.dart';
@@ -12,6 +11,7 @@ import '../../ui/screens/person_singleton_db_read_screen.dart';
 import '../../ui/screens/bottom_sheet_navigation_screen.dart';
 import '../../ui/screens/features_screen.dart';
 import '../../ui/screens/track_screen.dart';
+import '../../ui/screens/examples_screen.dart';
 
 
 part 'app_router.gr.dart';
@@ -24,16 +24,11 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
         page: SplashRoute.page,
         path: "/splash",
-        initial: true
+        //initial: true
     ),
     AutoRoute(
         page: DisplayCommonWidgetsRoute.page,
         path: "/commonwidgets",
-
-    ),
-    AutoRoute(
-        page: KeyValueStoreRoute.page,
-        path: "/keyvaluestore",
 
     ),
     AutoRoute(
@@ -50,8 +45,13 @@ class AppRouter extends RootStackRouter {
         path: "/personRead"
     ),
     AutoRoute(
+        page: ExamplesRoute.page,
+        path: "/examples"
+    ),
+    AutoRoute(
         page: BottomSheetNavigationRoute.page,
         path: '/bottomsheetpage',
+        initial: true,
         children: [
           AutoRoute(
             page: FeaturesRoute.page,

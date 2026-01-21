@@ -4,6 +4,9 @@ class ImageConstants {
   static const String kLogoWithTagline = "assets/images/Logo_With_Tagline.png";
   static const String kLogoWithoutTagline = "assets/images/Without_Tagline.png";
   static const String kLoadingJson = "assets/animations/loading_animation.json";
+  static const String kFallJson = "assets/animations/fall.json";
+  static const String kSuccessJson = "assets/animations/success_check.json";
+  static const String kPencilImage = "assets/images/pencil.png";
   static const String kErrorImage = "assets/images/something_went_wrong.webp";
 
   static const String kFeature1 = "assets/images/feature_1.png";

@@ -24,10 +24,7 @@ class PersonStoreManager {
     )
       ..order(PersonStoreData_.personId, flags: Order.descending);*/
 
-    final queryBuilder = _box.query(
-        PersonStoreData_.personId > 5
-    )
-        .order(PersonStoreData_.personId, flags: Order.descending);
+    final queryBuilder = _box.query().order(PersonStoreData_.personId, flags: Order.descending);
     final Stream<Query<PersonStoreData>> queryToWatch = queryBuilder.watch(triggerImmediately: true);
     Stream<List<PersonStoreData>> rowsInStream = queryToWatch.map((query) => query.find());
     yield* rowsInStream;
