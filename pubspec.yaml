@@ -68,6 +68,19 @@ dependencies:
   #Expandable floating action buttons for home screen
   flutter_expandable_fab: ^2.5.2
 
+  #Firebase remote config and other services plugins
+  firebase_core: ^4.4.0
+  firebase_remote_config: ^6.1.4
+
+  #Creating immutable states in flutter
+  freezed: ^3.2.4
+
+  #Generating to json and from json
+  json_serializable: ^6.11.3
+
+  #Bloc state management plugin
+  flutter_bloc: ^9.1.1
+
 dependency_overrides:
   analyzer: ^9.0.0
 
@@ -93,6 +106,10 @@ dev_dependencies:
 
   #generator for dependency injection
   injectable_generator: ^2.12.0
+
+  #Auto generating immutable classes
+  freezed_annotation: ^3.1.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

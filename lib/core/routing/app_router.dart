@@ -12,6 +12,7 @@ import '../../ui/screens/bottom_sheet_navigation_screen.dart';
 import '../../ui/screens/features_screen.dart';
 import '../../ui/screens/track_screen.dart';
 import '../../ui/screens/examples_screen.dart';
+import '../../ui/screens/goal_tracker_screen.dart';
 
 
 part 'app_router.gr.dart';
@@ -51,7 +52,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
         page: BottomSheetNavigationRoute.page,
         path: '/bottomsheetpage',
-        initial: true,
+        //initial: true,
         children: [
           AutoRoute(
             page: FeaturesRoute.page,
@@ -66,6 +67,11 @@ class AppRouter extends RootStackRouter {
               path: "tracker"
           ),
         ]
-    )
+    ),
+    AutoRoute(
+        page: GoalTrackerRoute.page,
+        path: "/goaltracker",
+        initial: true
+    ),
   ];
 }

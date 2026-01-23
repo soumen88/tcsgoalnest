@@ -75,6 +75,22 @@ class FeaturesRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [GoalTrackerScreen]
+class GoalTrackerRoute extends PageRouteInfo<void> {
+  const GoalTrackerRoute({List<PageRouteInfo>? children})
+    : super(GoalTrackerRoute.name, initialChildren: children);
+
+  static const String name = 'GoalTrackerRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return GoalTrackerScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [HomeScreen]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})

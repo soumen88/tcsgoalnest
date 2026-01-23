@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "805104212172",
+    "firebase_url": "https://goalnest-fe00a-default-rtdb.firebaseio.com",
+    "project_id": "goalnest-fe00a",
+    "storage_bucket": "goalnest-fe00a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805104212172:android:3d32da279325a68f0aca69",
+        "android_client_info": {
+          "package_name": "com.goalnest.investor.trackmoneyapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkK-bFBTKteb0omT4i3HvrI2LpasBHFis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805104212172:android:1735677ee5bc123b0aca69",
+        "android_client_info": {
+          "package_name": "com.tcs.goalnest.tcsgoalnest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkK-bFBTKteb0omT4i3HvrI2LpasBHFis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

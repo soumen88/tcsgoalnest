@@ -3,5 +3,6 @@ class AppConstants {
   static const kAppSubtitle = "Your perfect Money Tracker";
 
   static const kStringUserName = "user_name";
+  static const kGoalJsonKey = "goal_types";
 
 }
