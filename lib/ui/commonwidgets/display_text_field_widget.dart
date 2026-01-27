@@ -13,6 +13,8 @@ class DisplayTextFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: inputController,
+      enabled: isEnabled,
+      keyboardType: inputType,
       decoration: InputDecoration(
         border: OutlineInputBorder(
           borderSide: BorderSide(

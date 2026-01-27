@@ -60,9 +60,48 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "4:2912203013853609161",
+      "lastPropertyId": "6:2305601635046110762",
+      "name": "GoalStoreData",
+      "properties": [
+        {
+          "id": "1:2330223296124703673",
+          "name": "goalId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6250277381479515238",
+          "name": "goalName",
+          "type": 9
+        },
+        {
+          "id": "3:3557137753056099793",
+          "name": "goalType",
+          "type": 9
+        },
+        {
+          "id": "4:6834458189301563533",
+          "name": "startDate",
+          "type": 9
+        },
+        {
+          "id": "5:5801628919320258526",
+          "name": "endDate",
+          "type": 9
+        },
+        {
+          "id": "6:2305601635046110762",
+          "name": "targetAmount",
+          "type": 6
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "3:6002816074833289441",
+  "lastEntityId": "4:2912203013853609161",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",

@@ -42,6 +42,6 @@ class GoalsBloc extends Bloc<GoalScreenEvents, GoalScreenStates>{
   }
 
   Future<void> _onGoalSelected(GoalSelectedEvent event, Emitter<GoalScreenStates> emit) async{
-
+    emit(GoalScreenStates.fillGoalDetailsView(event.goalSelected));
   }
 }

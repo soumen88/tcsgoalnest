@@ -59,17 +59,6 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
-        Row(
-          children: [
-            Text('Star'),
-            SizedBox(width: 20),
-            FloatingActionButton.small(
-              heroTag: null,
-              onPressed: null,
-              child: Icon(Icons.star),
-            ),
-          ],
-        ),
         FloatingActionButton.small(
           heroTag: null,
           onPressed: null,

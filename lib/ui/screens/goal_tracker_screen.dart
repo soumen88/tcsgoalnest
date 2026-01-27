@@ -15,6 +15,7 @@ import 'package:tcsgoalnest/data/models/goal_categories_model.dart';
 import 'package:tcsgoalnest/data/models/goal_model.dart';
 import 'package:tcsgoalnest/data/models/goal_type_model.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/bold_text_widget.dart';
+import 'package:tcsgoalnest/ui/commonwidgets/creategoal/fill_goal_details_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/custom_app_bar.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/custom_loader.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/display_error_widget.dart';
@@ -72,7 +73,7 @@ class GoalTrackerScreen extends StatelessWidget {
                                             minRadius: 30,
                                             maxRadius: 30,
                                             child: Image.asset(
-                                                ImageConstants.kLogoOnly,
+                                                goalTypeModel.image,
                                                 fit: BoxFit.contain,
                                             ),
                                           ),
@@ -91,36 +92,41 @@ class GoalTrackerScreen extends StatelessWidget {
                                             itemCount: goalTypeModel.goals.length,
                                             itemBuilder: (BuildContext context, int index){
                                               GoalModel currentGoalModel = goalTypeModel.goals[index];
-                                              return Card(
-                                                child: Padding(
-                                                    padding: EdgeInsets.all(10),
-                                                    child: Column(
-                                                      children: [
-                                                        Row(
-                                                          children: [
-                                                            Icon(Icons.info),
-                                                            SizedBox(
-                                                              width: 10,
-                                                            ),
-                                                            RegularTextWidget(
-                                                                textToDisplay: currentGoalModel.name
-                                                            )
-                                                          ],
-                                                        ),
-                                                        SizedBox(
-                                                          height: 10,
-                                                        ),
-                                                        Row(
-                                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                                          children: [
-                                                            RegularTextWidget(
-                                                                textToDisplay: "Here you can include - "
-                                                            ),
-                                                            Expanded(child: RegularTextWidget(textToDisplay: currentGoalModel.description))
-                                                          ],
-                                                        ),
-                                                      ],
-                                                    ),
+                                              return GestureDetector(
+                                                onTap: (){
+                                                  BlocProvider.of<GoalsBloc>(context).add(GoalScreenEvents.goalSelected(currentGoalModel));
+                                                },
+                                                child: Card(
+                                                  child: Padding(
+                                                      padding: EdgeInsets.all(10),
+                                                      child: Column(
+                                                        children: [
+                                                          Row(
+                                                            children: [
+                                                              Icon(Icons.info),
+                                                              SizedBox(
+                                                                width: 10,
+                                                              ),
+                                                              RegularTextWidget(
+                                                                  textToDisplay: currentGoalModel.name
+                                                              )
+                                                            ],
+                                                          ),
+                                                          SizedBox(
+                                                            height: 10,
+                                                          ),
+                                                          Row(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              RegularTextWidget(
+                                                                  textToDisplay: "Here you can include - "
+                                                              ),
+                                                              Expanded(child: RegularTextWidget(textToDisplay: currentGoalModel.description))
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
+                                                  ),
                                                 ),
                                               );
                                             }
@@ -132,6 +138,14 @@ class GoalTrackerScreen extends StatelessWidget {
                           )
                         ],
                       )
+                    );
+                  },
+                  fillGoalDetailsView: (GoalModel goalSelectedByUser){
+                    return FillGoalDetailsWidget(
+                        goalSelectedByUser: goalSelectedByUser,
+                        chooseDifferentGoalPress: (){
+                          BlocProvider.of<GoalsBloc>(context).add(GoalScreenEvents.loadGoalsFromFirebase());
+                        },
                     );
                   }
               );

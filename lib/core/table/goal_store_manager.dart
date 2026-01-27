@@ -1,0 +1,33 @@
+import 'package:injectable/injectable.dart';
+
+import '../../objectbox.g.dart';
+import '../schema/goal_store_data.dart';
+import '../utils/logger_util.dart';
+
+@lazySingleton
+class GoalStoreManager {
+  final _logger = LoggerUtil();
+  final _TAG = "GoalStoreManager";
+  final Box<GoalStoreData> _box;
+
+  GoalStoreManager(Store objectBoxStore) : _box = objectBoxStore.box<GoalStoreData>();
+
+  Future<void> insertAGoal({required String goalName, required String goalType, required String startDate, required String endDate, required int targetAmount}) async{
+    GoalStoreData goalStoreData = GoalStoreData(
+        goalName: goalName,
+        goalType: goalType,
+        startDate: startDate,
+        endDate: endDate,
+        targetAmount: targetAmount
+    );
+    int rowIdInserted = _box.put(goalStoreData);
+    _logger.log(TAG: _TAG, message: "Inserted row id $rowIdInserted");
+  }
+
+  Stream<List<GoalStoreData>> listenToGoals() async*{
+    final queryBuilder = _box.query().order(GoalStoreData_.goalId);
+    final Stream<Query<GoalStoreData>> queryToWatch = queryBuilder.watch(triggerImmediately: true);
+    Stream<List<GoalStoreData>> rowsInStream = queryToWatch.map((query) => query.find());
+    yield* rowsInStream;
+  }
+}

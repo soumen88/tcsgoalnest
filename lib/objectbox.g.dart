@@ -14,6 +14,7 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
+import 'core/schema/goal_store_data.dart';
 import 'core/schema/key_value_store_data.dart';
 import 'core/schema/person_store_data.dart';
 
@@ -88,6 +89,52 @@ final _entities = <obx_int.ModelEntity>[
     relations: <obx_int.ModelRelation>[],
     backlinks: <obx_int.ModelBacklink>[],
   ),
+  obx_int.ModelEntity(
+    id: const obx_int.IdUid(4, 2912203013853609161),
+    name: 'GoalStoreData',
+    lastPropertyId: const obx_int.IdUid(6, 2305601635046110762),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 2330223296124703673),
+        name: 'goalId',
+        type: 6,
+        flags: 1,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(2, 6250277381479515238),
+        name: 'goalName',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(3, 3557137753056099793),
+        name: 'goalType',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 6834458189301563533),
+        name: 'startDate',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(5, 5801628919320258526),
+        name: 'endDate',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(6, 2305601635046110762),
+        name: 'targetAmount',
+        type: 6,
+        flags: 0,
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[],
+  ),
 ];
 
 /// Shortcut for [obx.Store.new] that passes [getObjectBoxModel] and for Flutter
@@ -133,7 +180,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
     // Typically, this is done with `dart run build_runner build`.
     generatorVersion: obx_int.GeneratorVersion.v2025_12_16,
     entities: _entities,
-    lastEntityId: const obx_int.IdUid(3, 6002816074833289441),
+    lastEntityId: const obx_int.IdUid(4, 2912203013853609161),
     lastIndexId: const obx_int.IdUid(0, 0),
     lastRelationId: const obx_int.IdUid(0, 0),
     lastSequenceId: const obx_int.IdUid(0, 0),
@@ -255,6 +302,68 @@ obx_int.ModelDefinition getObjectBoxModel() {
         return object;
       },
     ),
+    GoalStoreData: obx_int.EntityDefinition<GoalStoreData>(
+      model: _entities[2],
+      toOneRelations: (GoalStoreData object) => [],
+      toManyRelations: (GoalStoreData object) => {},
+      getId: (GoalStoreData object) => object.goalId,
+      setId: (GoalStoreData object, int id) {
+        object.goalId = id;
+      },
+      objectToFB: (GoalStoreData object, fb.Builder fbb) {
+        final goalNameOffset = fbb.writeString(object.goalName);
+        final goalTypeOffset = fbb.writeString(object.goalType);
+        final startDateOffset = fbb.writeString(object.startDate);
+        final endDateOffset = fbb.writeString(object.endDate);
+        fbb.startTable(7);
+        fbb.addInt64(0, object.goalId);
+        fbb.addOffset(1, goalNameOffset);
+        fbb.addOffset(2, goalTypeOffset);
+        fbb.addOffset(3, startDateOffset);
+        fbb.addOffset(4, endDateOffset);
+        fbb.addInt64(5, object.targetAmount);
+        fbb.finish(fbb.endTable());
+        return object.goalId;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+        final goalIdParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          4,
+          0,
+        );
+        final goalNameParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 6, '');
+        final goalTypeParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 8, '');
+        final startDateParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 10, '');
+        final endDateParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 12, '');
+        final targetAmountParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          14,
+          0,
+        );
+        final object = GoalStoreData(
+          goalId: goalIdParam,
+          goalName: goalNameParam,
+          goalType: goalTypeParam,
+          startDate: startDateParam,
+          endDate: endDateParam,
+          targetAmount: targetAmountParam,
+        );
+
+        return object;
+      },
+    ),
   };
 
   return obx_int.ModelDefinition(model, bindings);
@@ -303,5 +412,38 @@ class PersonStoreData_ {
   /// See [PersonStoreData.personEmail].
   static final personEmail = obx.QueryStringProperty<PersonStoreData>(
     _entities[1].properties[3],
+  );
+}
+
+/// [GoalStoreData] entity fields to define ObjectBox queries.
+class GoalStoreData_ {
+  /// See [GoalStoreData.goalId].
+  static final goalId = obx.QueryIntegerProperty<GoalStoreData>(
+    _entities[2].properties[0],
+  );
+
+  /// See [GoalStoreData.goalName].
+  static final goalName = obx.QueryStringProperty<GoalStoreData>(
+    _entities[2].properties[1],
+  );
+
+  /// See [GoalStoreData.goalType].
+  static final goalType = obx.QueryStringProperty<GoalStoreData>(
+    _entities[2].properties[2],
+  );
+
+  /// See [GoalStoreData.startDate].
+  static final startDate = obx.QueryStringProperty<GoalStoreData>(
+    _entities[2].properties[3],
+  );
+
+  /// See [GoalStoreData.endDate].
+  static final endDate = obx.QueryStringProperty<GoalStoreData>(
+    _entities[2].properties[4],
+  );
+
+  /// See [GoalStoreData.targetAmount].
+  static final targetAmount = obx.QueryIntegerProperty<GoalStoreData>(
+    _entities[2].properties[5],
   );
 }

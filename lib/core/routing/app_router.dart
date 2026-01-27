@@ -64,7 +64,7 @@ class AppRouter extends RootStackRouter {
           ),
           AutoRoute(
               page: TrackRoute.page,
-              path: "tracker"
+              path: "tracker_screen_controller"
           ),
         ]
     ),
