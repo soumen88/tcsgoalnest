@@ -18,7 +18,7 @@ class BottomSheetNavigationScreen extends StatelessWidget {
       routes: const [
         FeaturesRoute(),
         HomeRoute(),
-        TrackRoute(),
+        TrackGoalsRoute(),
       ],
       transitionBuilder: (context,child,animation) => FadeTransition(
         opacity: animation,

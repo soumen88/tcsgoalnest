@@ -171,17 +171,17 @@ class StreamExampleRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [TrackScreen]
-class TrackRoute extends PageRouteInfo<void> {
-  const TrackRoute({List<PageRouteInfo>? children})
-    : super(TrackRoute.name, initialChildren: children);
+/// [TrackGoalsScreen]
+class TrackGoalsRoute extends PageRouteInfo<void> {
+  const TrackGoalsRoute({List<PageRouteInfo>? children})
+    : super(TrackGoalsRoute.name, initialChildren: children);
 
-  static const String name = 'TrackRoute';
+  static const String name = 'TrackGoalsRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const TrackScreen();
+      return TrackGoalsScreen();
     },
   );
 }

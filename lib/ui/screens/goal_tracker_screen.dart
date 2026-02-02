@@ -94,7 +94,7 @@ class GoalTrackerScreen extends StatelessWidget {
                                               GoalModel currentGoalModel = goalTypeModel.goals[index];
                                               return GestureDetector(
                                                 onTap: (){
-                                                  BlocProvider.of<GoalsBloc>(context).add(GoalScreenEvents.goalSelected(currentGoalModel));
+                                                  BlocProvider.of<GoalsBloc>(context).add(GoalScreenEvents.goalSelected(goalTypeModel));
                                                 },
                                                 child: Card(
                                                   child: Padding(
@@ -140,7 +140,7 @@ class GoalTrackerScreen extends StatelessWidget {
                       )
                     );
                   },
-                  fillGoalDetailsView: (GoalModel goalSelectedByUser){
+                  fillGoalDetailsView: (GoalTypeModel goalSelectedByUser){
                     return FillGoalDetailsWidget(
                         goalSelectedByUser: goalSelectedByUser,
                         chooseDifferentGoalPress: (){

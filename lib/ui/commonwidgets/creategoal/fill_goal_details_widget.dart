@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:tcsgoalnest/core/dependency/injectable_setup.dart';
+import 'package:tcsgoalnest/core/schema/activity_tracker_data.dart';
 import 'package:tcsgoalnest/core/schema/goal_store_data.dart';
 import 'package:tcsgoalnest/core/table/goal_store_manager.dart';
 import 'package:tcsgoalnest/data/models/goal_model.dart';
@@ -9,10 +11,12 @@ import 'package:tcsgoalnest/ui/commonwidgets/filled_button_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/outline_button_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/regular_text_widget.dart';
 
+import '../../../core/table/activity_store_manager.dart';
+import '../../../data/models/goal_type_model.dart';
 import '../bold_text_widget.dart';
 
 class FillGoalDetailsWidget extends StatefulWidget {
-  final GoalModel goalSelectedByUser;
+  final GoalTypeModel goalSelectedByUser;
   final VoidCallback? chooseDifferentGoalPress;
   final VoidCallback? addAGoalPress;
 
@@ -29,6 +33,7 @@ class _FillGoalDetailsWidgetState extends State<FillGoalDetailsWidget> {
   final TextEditingController amountController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey();
   final _goalStoreManager = locator<GoalStoreManager>();
+  final _activityStoreManager = locator<ActivityStoreManager>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,17 +143,29 @@ class _FillGoalDetailsWidgetState extends State<FillGoalDetailsWidget> {
                   width: MediaQuery.of(context).size.width,
                   child: FilledButtonWidget(
                     buttonCaption: "Add a goal",
-                    onButtonPress: (){
+                    onButtonPress: () async{
                       if(formKey.currentState != null && formKey.currentState!.validate()){
 
-                        _goalStoreManager.insertAGoal(
+                        var goalIdCreated = await _goalStoreManager.insertAGoal(
                             goalName: goalNameController.text,
                             goalType: widget.goalSelectedByUser.name,
                             startDate: startDateController.text,
                             endDate: endDateController.text,
-                            targetAmount: int.parse(amountController.text)
+                            targetAmount: int.parse(amountController.text),
+                            imagePath: widget.goalSelectedByUser.image
                         );
+
+                        var activity = ActivityTrackerData(
+                            goalId: goalIdCreated,
+                            goalName: goalNameController.text,
+                            goalType: widget.goalSelectedByUser.name,
+                            activityDate: DateTime.now(),
+                            amountSaved: 0
+                        );
+
+                        //_activityStoreManager.saveActivity(activity);
                         widget.addAGoalPress?.call();
+                        context.router.pop();
                       }
 
                     },

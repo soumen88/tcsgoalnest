@@ -63,7 +63,7 @@
     },
     {
       "id": "4:2912203013853609161",
-      "lastPropertyId": "6:2305601635046110762",
+      "lastPropertyId": "9:5616923717878597002",
       "name": "GoalStoreData",
       "properties": [
         {
@@ -96,12 +96,66 @@
           "id": "6:2305601635046110762",
           "name": "targetAmount",
           "type": 6
+        },
+        {
+          "id": "7:4695070730549703902",
+          "name": "currentAmount",
+          "type": 6
+        },
+        {
+          "id": "8:2642064670454347084",
+          "name": "goalAssetImage",
+          "type": 9
+        },
+        {
+          "id": "9:5616923717878597002",
+          "name": "isGoalCompleted",
+          "type": 1
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "5:3293041937283377168",
+      "lastPropertyId": "6:1551419126016961782",
+      "name": "ActivityTrackerData",
+      "properties": [
+        {
+          "id": "1:2194894480864350047",
+          "name": "activityId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5510725170053497978",
+          "name": "goalId",
+          "type": 6
+        },
+        {
+          "id": "3:2763067568615748075",
+          "name": "goalName",
+          "type": 9
+        },
+        {
+          "id": "4:4153055451064276904",
+          "name": "goalType",
+          "type": 9
+        },
+        {
+          "id": "5:6050932983485810270",
+          "name": "activityDate",
+          "type": 10
+        },
+        {
+          "id": "6:1551419126016961782",
+          "name": "amountSaved",
+          "type": 8
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "4:2912203013853609161",
+  "lastEntityId": "5:3293041937283377168",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",

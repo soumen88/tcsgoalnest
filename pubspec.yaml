@@ -81,6 +81,15 @@ dependencies:
   #Bloc state management plugin
   flutter_bloc: ^9.1.1
 
+  #Display date in correct format
+  intl: ^0.20.2
+
+  #Display pie, bar chart in code
+  fl_chart: ^1.1.1
+
+  #display carousel slider in app
+  carousel_slider: ^5.1.1
+
 dependency_overrides:
   analyzer: ^9.0.0
 

@@ -9,6 +9,9 @@ class GoalStoreData {
   String startDate;
   String endDate;
   int targetAmount;
+  int currentAmount;
+  String goalAssetImage;
+  bool isGoalCompleted;
 
   GoalStoreData({
     this.goalId = 0,
@@ -16,7 +19,10 @@ class GoalStoreData {
     required this.goalType,
     required this.startDate,
     required this.endDate,
-    required this.targetAmount
+    required this.targetAmount,
+    this.currentAmount = 0,
+    this.goalAssetImage = "",
+    this.isGoalCompleted = false,
 });
 
 

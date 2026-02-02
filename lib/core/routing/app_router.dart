@@ -10,7 +10,7 @@ import '../../ui/screens/person_singleton_db_insert_screen.dart';
 import '../../ui/screens/person_singleton_db_read_screen.dart';
 import '../../ui/screens/bottom_sheet_navigation_screen.dart';
 import '../../ui/screens/features_screen.dart';
-import '../../ui/screens/track_screen.dart';
+import '../../ui/screens/track_goals_screen.dart';
 import '../../ui/screens/examples_screen.dart';
 import '../../ui/screens/goal_tracker_screen.dart';
 
@@ -52,7 +52,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
         page: BottomSheetNavigationRoute.page,
         path: '/bottomsheetpage',
-        //initial: true,
+        initial: true,
         children: [
           AutoRoute(
             page: FeaturesRoute.page,
@@ -63,15 +63,15 @@ class AppRouter extends RootStackRouter {
               path: "home"
           ),
           AutoRoute(
-              page: TrackRoute.page,
-              path: "tracker_screen_controller"
+              page: TrackGoalsRoute.page,
+              path: "trackGoals",
           ),
         ]
     ),
     AutoRoute(
         page: GoalTrackerRoute.page,
         path: "/goaltracker",
-        initial: true
+        //initial: true
     ),
   ];
 }

@@ -8,5 +8,5 @@ part 'goal_screen_events.freezed.dart';
 @freezed
 sealed class GoalScreenEvents with _$GoalScreenEvents{
   const factory GoalScreenEvents.loadGoalsFromFirebase() = LoadGoalsFromFirebaseEvent;
-  const factory GoalScreenEvents.goalSelected(GoalModel goalSelected) = GoalSelectedEvent;
+  const factory GoalScreenEvents.goalSelected(GoalTypeModel goalSelected) = GoalSelectedEvent;
 }

@@ -5,6 +5,7 @@ import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/custom_app_bar.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/custom_loader.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/display_error_widget.dart';
+import 'package:tcsgoalnest/ui/commonwidgets/home/no_goals_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/home/top_bar_widget.dart';
 
 import '../../core/routing/app_router.dart';
@@ -21,7 +22,8 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            TopBarWidget()
+            TopBarWidget(),
+            NoGoalsWidget()
           ],
         ),
       ),
@@ -42,9 +44,10 @@ class HomeScreen extends StatelessWidget {
             FloatingActionButton.small(
               heroTag: null,
               onPressed: (){
-                _key.currentState?.close();
+                _key.currentState!.close();
+                context.router.push(const GoalTrackerRoute());
               },
-              child: Icon(Icons.notifications),
+              child: Icon(Icons.plus_one_outlined),
             ),
           ],
         ),

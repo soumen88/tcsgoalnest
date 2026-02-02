@@ -14,6 +14,7 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
+import 'core/schema/activity_tracker_data.dart';
 import 'core/schema/goal_store_data.dart';
 import 'core/schema/key_value_store_data.dart';
 import 'core/schema/person_store_data.dart';
@@ -92,7 +93,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
     id: const obx_int.IdUid(4, 2912203013853609161),
     name: 'GoalStoreData',
-    lastPropertyId: const obx_int.IdUid(6, 2305601635046110762),
+    lastPropertyId: const obx_int.IdUid(9, 5616923717878597002),
     flags: 0,
     properties: <obx_int.ModelProperty>[
       obx_int.ModelProperty(
@@ -129,6 +130,70 @@ final _entities = <obx_int.ModelEntity>[
         id: const obx_int.IdUid(6, 2305601635046110762),
         name: 'targetAmount',
         type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(7, 4695070730549703902),
+        name: 'currentAmount',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(8, 2642064670454347084),
+        name: 'goalAssetImage',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(9, 5616923717878597002),
+        name: 'isGoalCompleted',
+        type: 1,
+        flags: 0,
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[],
+  ),
+  obx_int.ModelEntity(
+    id: const obx_int.IdUid(5, 3293041937283377168),
+    name: 'ActivityTrackerData',
+    lastPropertyId: const obx_int.IdUid(6, 1551419126016961782),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 2194894480864350047),
+        name: 'activityId',
+        type: 6,
+        flags: 1,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(2, 5510725170053497978),
+        name: 'goalId',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(3, 2763067568615748075),
+        name: 'goalName',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 4153055451064276904),
+        name: 'goalType',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(5, 6050932983485810270),
+        name: 'activityDate',
+        type: 10,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(6, 1551419126016961782),
+        name: 'amountSaved',
+        type: 8,
         flags: 0,
       ),
     ],
@@ -180,7 +245,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
     // Typically, this is done with `dart run build_runner build`.
     generatorVersion: obx_int.GeneratorVersion.v2025_12_16,
     entities: _entities,
-    lastEntityId: const obx_int.IdUid(4, 2912203013853609161),
+    lastEntityId: const obx_int.IdUid(5, 3293041937283377168),
     lastIndexId: const obx_int.IdUid(0, 0),
     lastRelationId: const obx_int.IdUid(0, 0),
     lastSequenceId: const obx_int.IdUid(0, 0),
@@ -315,13 +380,17 @@ obx_int.ModelDefinition getObjectBoxModel() {
         final goalTypeOffset = fbb.writeString(object.goalType);
         final startDateOffset = fbb.writeString(object.startDate);
         final endDateOffset = fbb.writeString(object.endDate);
-        fbb.startTable(7);
+        final goalAssetImageOffset = fbb.writeString(object.goalAssetImage);
+        fbb.startTable(10);
         fbb.addInt64(0, object.goalId);
         fbb.addOffset(1, goalNameOffset);
         fbb.addOffset(2, goalTypeOffset);
         fbb.addOffset(3, startDateOffset);
         fbb.addOffset(4, endDateOffset);
         fbb.addInt64(5, object.targetAmount);
+        fbb.addInt64(6, object.currentAmount);
+        fbb.addOffset(7, goalAssetImageOffset);
+        fbb.addBool(8, object.isGoalCompleted);
         fbb.finish(fbb.endTable());
         return object.goalId;
       },
@@ -352,6 +421,21 @@ obx_int.ModelDefinition getObjectBoxModel() {
           14,
           0,
         );
+        final currentAmountParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          16,
+          0,
+        );
+        final goalAssetImageParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 18, '');
+        final isGoalCompletedParam = const fb.BoolReader().vTableGet(
+          buffer,
+          rootOffset,
+          20,
+          false,
+        );
         final object = GoalStoreData(
           goalId: goalIdParam,
           goalName: goalNameParam,
@@ -359,6 +443,72 @@ obx_int.ModelDefinition getObjectBoxModel() {
           startDate: startDateParam,
           endDate: endDateParam,
           targetAmount: targetAmountParam,
+          currentAmount: currentAmountParam,
+          goalAssetImage: goalAssetImageParam,
+          isGoalCompleted: isGoalCompletedParam,
+        );
+
+        return object;
+      },
+    ),
+    ActivityTrackerData: obx_int.EntityDefinition<ActivityTrackerData>(
+      model: _entities[3],
+      toOneRelations: (ActivityTrackerData object) => [],
+      toManyRelations: (ActivityTrackerData object) => {},
+      getId: (ActivityTrackerData object) => object.activityId,
+      setId: (ActivityTrackerData object, int id) {
+        object.activityId = id;
+      },
+      objectToFB: (ActivityTrackerData object, fb.Builder fbb) {
+        final goalNameOffset = fbb.writeString(object.goalName);
+        final goalTypeOffset = fbb.writeString(object.goalType);
+        fbb.startTable(7);
+        fbb.addInt64(0, object.activityId);
+        fbb.addInt64(1, object.goalId);
+        fbb.addOffset(2, goalNameOffset);
+        fbb.addOffset(3, goalTypeOffset);
+        fbb.addInt64(4, object.activityDate.millisecondsSinceEpoch);
+        fbb.addFloat64(5, object.amountSaved);
+        fbb.finish(fbb.endTable());
+        return object.activityId;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+        final activityIdParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          4,
+          0,
+        );
+        final goalIdParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          6,
+          0,
+        );
+        final goalNameParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 8, '');
+        final goalTypeParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 10, '');
+        final activityDateParam = DateTime.fromMillisecondsSinceEpoch(
+          const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0),
+        );
+        final amountSavedParam = const fb.Float64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          14,
+          0,
+        );
+        final object = ActivityTrackerData(
+          activityId: activityIdParam,
+          goalId: goalIdParam,
+          goalName: goalNameParam,
+          goalType: goalTypeParam,
+          activityDate: activityDateParam,
+          amountSaved: amountSavedParam,
         );
 
         return object;
@@ -445,5 +595,53 @@ class GoalStoreData_ {
   /// See [GoalStoreData.targetAmount].
   static final targetAmount = obx.QueryIntegerProperty<GoalStoreData>(
     _entities[2].properties[5],
+  );
+
+  /// See [GoalStoreData.currentAmount].
+  static final currentAmount = obx.QueryIntegerProperty<GoalStoreData>(
+    _entities[2].properties[6],
+  );
+
+  /// See [GoalStoreData.goalAssetImage].
+  static final goalAssetImage = obx.QueryStringProperty<GoalStoreData>(
+    _entities[2].properties[7],
+  );
+
+  /// See [GoalStoreData.isGoalCompleted].
+  static final isGoalCompleted = obx.QueryBooleanProperty<GoalStoreData>(
+    _entities[2].properties[8],
+  );
+}
+
+/// [ActivityTrackerData] entity fields to define ObjectBox queries.
+class ActivityTrackerData_ {
+  /// See [ActivityTrackerData.activityId].
+  static final activityId = obx.QueryIntegerProperty<ActivityTrackerData>(
+    _entities[3].properties[0],
+  );
+
+  /// See [ActivityTrackerData.goalId].
+  static final goalId = obx.QueryIntegerProperty<ActivityTrackerData>(
+    _entities[3].properties[1],
+  );
+
+  /// See [ActivityTrackerData.goalName].
+  static final goalName = obx.QueryStringProperty<ActivityTrackerData>(
+    _entities[3].properties[2],
+  );
+
+  /// See [ActivityTrackerData.goalType].
+  static final goalType = obx.QueryStringProperty<ActivityTrackerData>(
+    _entities[3].properties[3],
+  );
+
+  /// See [ActivityTrackerData.activityDate].
+  static final activityDate = obx.QueryDateProperty<ActivityTrackerData>(
+    _entities[3].properties[4],
+  );
+
+  /// See [ActivityTrackerData.amountSaved].
+  static final amountSaved = obx.QueryDoubleProperty<ActivityTrackerData>(
+    _entities[3].properties[5],
   );
 }
