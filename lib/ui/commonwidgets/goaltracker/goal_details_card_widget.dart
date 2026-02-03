@@ -56,8 +56,12 @@ class _GoalDetailsCardWidgetState extends State<GoalDetailsCardWidget> {
         child: Stack(
             children: [
               Positioned(
-                  top: 10,
-                  child: BoldTextWidget(textToDisplay: widget.goalDetails.goalName)
+                  left: 30,
+                  top: 16,
+                  child: BoldTextWidget(
+                      textToDisplay: widget.goalDetails.goalName,
+                      fontSize: 24,
+                  )
               ),
               Positioned(
                   top: 40,

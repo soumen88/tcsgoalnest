@@ -161,9 +161,9 @@ class _DisplaySingleGoalDetailsWidgetState extends State<DisplaySingleGoalDetail
           buttonCaption: "Save Goal",
           onButtonPress: (){
             if(_formKey.currentState != null && _formKey.currentState!.validate()){
-
+                var savedAmount = widget.goalDetails.currentAmount + int.parse(_currentAmountController.text);
                 GoalStoreData goalStoreData = widget.goalDetails;
-                goalStoreData.currentAmount = int.parse(_currentAmountController.text);
+                goalStoreData.currentAmount = savedAmount;
                 goalStoreData.isGoalCompleted = isGoalCompleted;
                 widget.saveGoalPressed.call(goalStoreData);
             }

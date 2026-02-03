@@ -1,0 +1,5 @@
+enum GoalStatusEnum {
+  NO_GOALS_COMPLETED,
+  NO_PENDING_GOALS,
+  NO_ACTIVITY_FOUND,
+}

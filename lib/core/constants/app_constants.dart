@@ -31,7 +31,12 @@ class AppConstants {
   static const String kCompleted = "Completed";
   static const String kGoalCompleted = "Mark this goal as completed";
   static const String kWhyMarkAsCompletedDescription = "Marking a goal as completed will close the goal and you will be seeing this goal in the completed section";
+
   static const String kNoGoalCompletedTitle = "No Goals completed";
   static const String kNoGoalCompletedDescription = "Stay Motivated and invest wisely to see your goals getting completed here...";
+  static const String kNoPendingGoalsTitle = "No Pending Goals Found";
+  static const String kNoPendingGoalDescription = "Have a goal in mind? If yes, create it and see them here...";
+  static const String kNoActivityTitle = "No Transactions Found";
+  static const String kNoActivityDescription = "Whenever you make a progress in your goal you should be seeing them here. For every penny saved we will help you track its date";
 
 }

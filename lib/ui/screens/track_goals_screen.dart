@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tcsgoalnest/controller/tracker_screen_controller/events/track_goal_screen_events.dart';
 import 'package:tcsgoalnest/controller/tracker_screen_controller/track_goals_bloc.dart';
+import 'package:tcsgoalnest/core/constants/color_constants.dart';
 import 'package:tcsgoalnest/core/dependency/injectable_setup.dart';
 import 'package:tcsgoalnest/core/schema/goal_store_data.dart';
 import 'package:tcsgoalnest/core/table/activity_store_manager.dart';
@@ -66,13 +67,16 @@ class TrackGoalsScreen extends StatelessWidget {
                           child: Column(
                             children: [
                               TabBar(
+                                indicatorColor: ColorConstants.kDarkAzureColor,
+                                labelColor: ColorConstants.kDarkAzureColor,
+                                indicatorSize: TabBarIndicatorSize.tab,
                                 tabs: [
                                   Tab(
-                                    text: "Pending",
+                                    text: "Pending Goals",
                                     icon: Icon(Icons.pending_actions_rounded),
                                   ),
                                   Tab(
-                                    text: "Completed",
+                                    text: "Completed Goals",
                                     icon: Icon(Icons.check_circle_rounded),
                                   ),
                                   Tab(
@@ -83,6 +87,7 @@ class TrackGoalsScreen extends StatelessWidget {
                               ),
                               Expanded(
                                 child: TabBarView(
+
                                   children: [
                                     PendingGoalsWidget(
                                         allPendingGoals: pendingGoalList,
