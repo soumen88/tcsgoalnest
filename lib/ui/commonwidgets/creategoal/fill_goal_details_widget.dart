@@ -100,7 +100,7 @@ class _FillGoalDetailsWidgetState extends State<FillGoalDetailsWidget> {
                             context: context,
                             initialDate: DateTime.now(),
                             firstDate: DateTime.now().subtract(Duration(days: 15)),
-                            lastDate: DateTime.now().add(Duration(days: 365))
+                            lastDate: DateTime.now().add(Duration(days: 7300))
                         );
                         if(endDate != null){
                           endDateController.text = "${endDate.day}-${endDate.month}-${endDate.year}";

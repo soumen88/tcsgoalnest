@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:tcsgoalnest/core/constants/color_constants.dart';
 import 'package:tcsgoalnest/core/dependency/injectable_setup.dart';
 import 'package:tcsgoalnest/core/routing/app_router.dart';
 import 'package:tcsgoalnest/core/utils/firebase_remote_config_service.dart';
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget{
     return MaterialApp.router(
       routerDelegate: _appRouter.delegate(),
       routeInformationParser: _appRouter.defaultRouteParser(),
+      theme: ThemeData(
+        primaryColor: ColorConstants.kWhiteColor
+      ),
       builder: (BuildContext context, Widget? child){
         return child!;
       },

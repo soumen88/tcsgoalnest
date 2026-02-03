@@ -2,11 +2,13 @@ import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
+import 'package:tcsgoalnest/core/constants/color_constants.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/custom_app_bar.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/custom_loader.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/display_error_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/home/no_goals_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/home/top_bar_widget.dart';
+import 'package:tcsgoalnest/ui/commonwidgets/regular_text_widget.dart';
 
 import '../../core/routing/app_router.dart';
 import '../commonwidgets/filled_button_widget.dart';
@@ -23,7 +25,13 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             TopBarWidget(),
-            NoGoalsWidget()
+            NoGoalsWidget(),
+            FilledButtonWidget(
+                buttonCaption: "Create A Goal",
+                onButtonPress: (){
+                  context.router.push(const GoalTrackerRoute());
+                },
+            )
           ],
         ),
       ),
@@ -39,7 +47,10 @@ class HomeScreen extends StatelessWidget {
       children: [
         Row(
           children: [
-            Text('Remind'),
+            RegularTextWidget(
+                textToDisplay: "Start a goal",
+                textColor: ColorConstants.kWhiteColor,
+            ),
             SizedBox(width: 20),
             FloatingActionButton.small(
               heroTag: null,
@@ -53,19 +64,20 @@ class HomeScreen extends StatelessWidget {
         ),
         Row(
           children: [
-            Text('Email'),
+            RegularTextWidget(
+              textToDisplay: "How It works?",
+              textColor: ColorConstants.kWhiteColor,
+            ),
             SizedBox(width: 20),
             FloatingActionButton.small(
               heroTag: null,
-              onPressed: null,
-              child: Icon(Icons.email),
+              onPressed: (){
+                _key.currentState!.close();
+                AutoTabsRouter.of(context).setActiveIndex(0);
+              },
+              child: Icon(Icons.question_mark),
             ),
           ],
-        ),
-        FloatingActionButton.small(
-          heroTag: null,
-          onPressed: null,
-          child: Icon(Icons.add),
         ),
       ],
     ),

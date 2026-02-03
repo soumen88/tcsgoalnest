@@ -63,31 +63,27 @@ class FeaturesScreen extends StatelessWidget {
       ),
       pages: [
         PageViewModel(
-          title: "Fractional shares",
-          body:
-          "Instead of having to buy an entire share, invest any amount you want.",
+          title: "Create Goals That Matter",
+          body: "Define what you’re saving for and turn your financial goals into clear, achievable plans.",
           image: _buildImage(ImageConstants.kFeature1),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Learn as you go",
-          body:
-          "Download the Stockpile app and master the market with our mini-lesson.",
+          title: "Save Smarter, Not Harder",
+          body: "Track your savings automatically and see your progress grow with every contribution.",
           image: _buildImage(ImageConstants.kFeature2),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Kids and teens",
-          body:
-          "Kids and teens can track their stocks 24/7 and place trades that you approve.",
+          title: "Track Every Step Forward",
+          body: "Stay motivated by watching your goal progress update in real time, one step at a time.",
           image: _buildImage(ImageConstants.kFeature3),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Full Screen Page",
-          body:
-          "Pages can be full screen as well.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id euismod lectus, non tempor felis. Nam rutrum rhoncus est ac venenatis.",
-          backgroundImage: ImageConstants.kFeature4,
+          title: "Turn Dreams Into Achievements",
+          body: "Set goals, follow your plan, and reach milestones that truly matter to you.",
+          image: _buildImage(ImageConstants.kFeature4),
           decoration: pageDecoration.copyWith(
             contentMargin: const EdgeInsets.symmetric(horizontal: 16),
             bodyFlex: 2,
@@ -109,7 +105,10 @@ class FeaturesScreen extends StatelessWidget {
         fontSize: 16,
         textColor: ColorConstants.kWhiteColor,
       ),
-      next: const Icon(Icons.arrow_forward),
+      next: const Icon(
+          Icons.arrow_forward,
+          color: ColorConstants.kWhiteColor,
+      ),
       done: RegularTextWidget(
           textToDisplay: 'Done',
           fontSize: 16,
@@ -118,16 +117,17 @@ class FeaturesScreen extends StatelessWidget {
       curve: Curves.fastLinearToSlowEaseIn,
       controlsMargin: const EdgeInsets.all(16),
       controlsPadding: const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
+
       dotsDecorator: const DotsDecorator(
         size: Size(10.0, 10.0),
-        color: Color(0xFFBDBDBD),
+        color: ColorConstants.kWhiteColor,
         activeSize: Size(22.0, 10.0),
         activeShape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(25.0)),
         ),
       ),
       dotsContainerDecorator: const ShapeDecoration(
-        color: Colors.black87,
+        color: ColorConstants.kDarkAzureColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),

@@ -13,7 +13,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
   Widget build(BuildContext context) {
     return AppBar(
       iconTheme: IconThemeData(
-        color: ColorConstants.kDarkAzureColor
+        color: ColorConstants.kWhiteColor
       ),
       title: IntrinsicHeight(
         child: Row(
