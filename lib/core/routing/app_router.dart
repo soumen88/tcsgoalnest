@@ -25,7 +25,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
         page: SplashRoute.page,
         path: "/splash",
-        //initial: true
+        initial: true
     ),
     AutoRoute(
         page: DisplayCommonWidgetsRoute.page,
@@ -52,7 +52,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
         page: BottomSheetNavigationRoute.page,
         path: '/bottomsheetpage',
-        initial: true,
         children: [
           AutoRoute(
             page: FeaturesRoute.page,
@@ -75,3 +74,4 @@ class AppRouter extends RootStackRouter {
     ),
   ];
 }
+
