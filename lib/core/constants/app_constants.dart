@@ -39,4 +39,7 @@ class AppConstants {
   static const String kNoActivityTitle = "No Transactions Found";
   static const String kNoActivityDescription = "Whenever you make a progress in your goal you should be seeing them here. For every penny saved we will help you track its date";
 
+  ///---------------- Ecommerce App Constants ------------------\\\\\\\
+  static const String kBaseUrl = "https://fake-store-api.mock.beeceptor.com/";
+  static const String kGetAllProductsEndpoint = "api/products";
 }

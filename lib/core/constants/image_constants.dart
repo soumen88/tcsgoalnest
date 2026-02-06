@@ -14,4 +14,17 @@ class ImageConstants {
   static const String kFeature3 = "assets/images/feature_3.png";
   static const String kFeature4 = "assets/images/feature_4.png";
 
+
+  ///-----------Ecommerce App --------------------------------\\
+  static const String kSmartphoneImage = "assets/images/product_images/smartphone.png";
+  static const String kLaptopImage = "assets/images/product_images/laptop.png";
+  static const String kHeadphonesImage = "assets/images/product_images/headphones.png";
+  static const String kSmartwatchImage = "assets/images/product_images/smartwatch.png";
+  static const String kCameraImage = "assets/images/product_images/camera.png";
+  static const String kTvImage = "assets/images/product_images/tv.png";
+  static const String kTabletImage = "assets/images/product_images/tablet.png";
+  static const String kConsoleImage = "assets/images/product_images/console.png";
+  static const String kRefrigeratorImage = "assets/images/product_images/refrigerator.png";
+
+
 }

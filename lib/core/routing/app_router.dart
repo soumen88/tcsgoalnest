@@ -13,6 +13,7 @@ import '../../ui/screens/features_screen.dart';
 import '../../ui/screens/track_goals_screen.dart';
 import '../../ui/screens/examples_screen.dart';
 import '../../ui/screens/goal_tracker_screen.dart';
+import '../../ui/ecommercescreens/product_list_home_screen.dart';
 
 
 part 'app_router.gr.dart';
@@ -25,7 +26,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
         page: SplashRoute.page,
         path: "/splash",
-        initial: true
+        //initial: true
     ),
     AutoRoute(
         page: DisplayCommonWidgetsRoute.page,
@@ -71,6 +72,11 @@ class AppRouter extends RootStackRouter {
         page: GoalTrackerRoute.page,
         path: "/goaltracker",
         //initial: true
+    ),
+    AutoRoute(
+      page: ProductListHomeRoute.page,
+      path: "/productListHome",
+      initial: true
     ),
   ];
 }

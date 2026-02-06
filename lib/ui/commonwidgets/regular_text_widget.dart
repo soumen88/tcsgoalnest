@@ -6,15 +6,23 @@ class RegularTextWidget extends StatelessWidget {
   final TextAlign textAlignment;
   final Color textColor;
   final double fontSize;
-  const RegularTextWidget({super.key, required this.textToDisplay, this.textAlignment = TextAlign.left, this.textColor = ColorConstants.kBlackColor, this.fontSize = 16});
+  final bool displayStrikeThrough;
+  const RegularTextWidget({super.key, required this.textToDisplay, this.textAlignment = TextAlign.left, this.textColor = ColorConstants.kBlackColor, this.fontSize = 16, this.displayStrikeThrough = false});
 
   @override
   Widget build(BuildContext context) {
     return Text(
       textToDisplay,
-      style: TextStyle(
+      style: displayStrikeThrough ? TextStyle(
         color: textColor,
-        fontSize: fontSize
+        fontSize: fontSize,
+        decoration: TextDecoration.lineThrough,
+        decorationColor: Colors.red,
+        decorationThickness: 2.0, // Thicker line
+      ) : TextStyle(
+        color: textColor,
+        fontSize: fontSize,
+
       ),
       textAlign: textAlignment,
     );

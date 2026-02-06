@@ -139,6 +139,22 @@ class PersonSingletonDbReadRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ProductListHomeScreen]
+class ProductListHomeRoute extends PageRouteInfo<void> {
+  const ProductListHomeRoute({List<PageRouteInfo>? children})
+    : super(ProductListHomeRoute.name, initialChildren: children);
+
+  static const String name = 'ProductListHomeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ProductListHomeScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [SplashScreen]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})
