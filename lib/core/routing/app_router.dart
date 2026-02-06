@@ -1,5 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:tcsgoalnest/ui/screens/method_channel_screen.dart';
 import 'package:tcsgoalnest/ui/screens/person_singleton_db_insert_screen.dart';
 
 import '../../ui/screens/display_common_widgets_screen.dart';
@@ -76,7 +77,12 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       page: ProductListHomeRoute.page,
       path: "/productListHome",
-      initial: true
+      //initial: true
+    ),
+    AutoRoute(
+        page: MethodChannelRoute.page,
+        path: "/methodchannel",
+        initial: true
     ),
   ];
 }
