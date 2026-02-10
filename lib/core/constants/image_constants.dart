@@ -25,6 +25,11 @@ class ImageConstants {
   static const String kTabletImage = "assets/images/product_images/tablet.png";
   static const String kConsoleImage = "assets/images/product_images/console.png";
   static const String kRefrigeratorImage = "assets/images/product_images/refrigerator.png";
+  static const String kGoogleLogo = "assets/images/google_logo.svg";
 
+  ///Firebase sign in
+  static const String kIdTag = "assets/images/id_tag.png";
+  static const String kEmailTag = "assets/images/email_tag.png";
+  static const String kNameTag = "assets/images/name_tag.png";
 
 }

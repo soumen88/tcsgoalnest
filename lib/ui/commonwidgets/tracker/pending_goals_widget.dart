@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tcsgoalnest/core/schema/goal_store_data.dart';
 
-import '../../../core/utils/goal_status_enum.dart';
+import '../../../core/enumerations/goal_status_enum.dart';
 import '../goaltracker/goal_details_card_widget.dart';
 import 'no_completed_goals_widget.dart';
 

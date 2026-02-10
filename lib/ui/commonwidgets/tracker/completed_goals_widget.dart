@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tcsgoalnest/core/utils/goal_status_enum.dart';
+import 'package:tcsgoalnest/core/enumerations/goal_status_enum.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/filled_button_widget.dart';
 
 import '../../../core/schema/goal_store_data.dart';

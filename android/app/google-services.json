@@ -13,7 +13,20 @@
           "package_name": "com.goalnest.investor.trackmoneyapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "805104212172-hu72mgo0t26gkquihuhdngodeh5k58ck.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.goalnest.investor.trackmoneyapp",
+            "certificate_hash": "2b954af1b5f7451c2b6a59e889478dce0d427d26"
+          }
+        },
+        {
+          "client_id": "805104212172-4338lqkgklncptjo42459jjbq47p9tn5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDkK-bFBTKteb0omT4i3HvrI2LpasBHFis"
@@ -21,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805104212172-4338lqkgklncptjo42459jjbq47p9tn5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     },
@@ -32,7 +50,20 @@
           "package_name": "com.tcs.goalnest.tcsgoalnest"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "805104212172-m1b3b8rped95ka3pq3dm5ldkpe3ahgne.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tcs.goalnest.tcsgoalnest",
+            "certificate_hash": "2b954af1b5f7451c2b6a59e889478dce0d427d26"
+          }
+        },
+        {
+          "client_id": "805104212172-4338lqkgklncptjo42459jjbq47p9tn5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDkK-bFBTKteb0omT4i3HvrI2LpasBHFis"
@@ -40,7 +71,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805104212172-4338lqkgklncptjo42459jjbq47p9tn5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

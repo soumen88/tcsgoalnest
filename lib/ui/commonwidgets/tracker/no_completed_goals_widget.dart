@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tcsgoalnest/core/constants/app_constants.dart';
 import 'package:tcsgoalnest/core/constants/image_constants.dart';
-import 'package:tcsgoalnest/core/utils/goal_status_enum.dart';
+import 'package:tcsgoalnest/core/enumerations/goal_status_enum.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/bold_text_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/regular_text_widget.dart';
 

@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:tcsgoalnest/core/constants/color_constants.dart';
 import 'package:tcsgoalnest/core/dependency/injectable_setup.dart';
 import 'package:tcsgoalnest/core/table/activity_store_manager.dart';
-import 'package:tcsgoalnest/core/utils/goal_status_enum.dart';
+import 'package:tcsgoalnest/core/enumerations/goal_status_enum.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/bold_text_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/custom_loader.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/display_error_widget.dart';

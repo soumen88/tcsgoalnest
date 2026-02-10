@@ -93,6 +93,13 @@ dependencies:
   #Make http requests
   dio: ^5.9.1
 
+  #Google sign in for on boarding users
+  google_sign_in: ^7.2.0
+  firebase_auth: ^6.1.4
+
+  #Display SVG images in app
+  flutter_svg: ^2.2.3
+
 dependency_overrides:
   analyzer: ^9.0.0
 

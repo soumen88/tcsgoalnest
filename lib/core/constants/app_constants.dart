@@ -42,4 +42,10 @@ class AppConstants {
   ///---------------- Ecommerce App Constants ------------------\\\\\\\
   static const String kBaseUrl = "https://fake-store-api.mock.beeceptor.com/";
   static const String kGetAllProductsEndpoint = "api/products";
+
+  /// Google sign in constants
+  static const String kUserName = "user_name";
+  static const String kUserEmail = "user_email";
+  static const String kUserId = "user_id";
+
 }

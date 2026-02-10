@@ -123,6 +123,22 @@ class MethodChannelRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [OnBoardingScreen]
+class OnBoardingRoute extends PageRouteInfo<void> {
+  const OnBoardingRoute({List<PageRouteInfo>? children})
+    : super(OnBoardingRoute.name, initialChildren: children);
+
+  static const String name = 'OnBoardingRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const OnBoardingScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [PersonSingletonDbInsertScreen]
 class PersonSingletonDbInsertRoute extends PageRouteInfo<void> {
   const PersonSingletonDbInsertRoute({List<PageRouteInfo>? children})
@@ -165,7 +181,7 @@ class ProductListHomeRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const ProductListHomeScreen();
+      return ProductListHomeScreen();
     },
   );
 }

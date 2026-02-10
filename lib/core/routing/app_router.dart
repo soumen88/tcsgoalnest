@@ -15,6 +15,7 @@ import '../../ui/screens/track_goals_screen.dart';
 import '../../ui/screens/examples_screen.dart';
 import '../../ui/screens/goal_tracker_screen.dart';
 import '../../ui/ecommercescreens/product_list_home_screen.dart';
+import '../../ui/ecommercescreens/on_boarding_screen.dart';
 
 
 part 'app_router.gr.dart';
@@ -82,7 +83,11 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
         page: MethodChannelRoute.page,
         path: "/methodchannel",
-        initial: true
+    ),
+    AutoRoute(
+      page: OnBoardingRoute.page,
+      path: "/onBoarding",
+      initial: true
     ),
   ];
 }
