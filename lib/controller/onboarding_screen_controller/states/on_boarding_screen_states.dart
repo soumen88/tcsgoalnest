@@ -10,4 +10,5 @@ sealed class OnBoardingScreenStates with _$OnBoardingScreenStates{
   const factory OnBoardingScreenStates.error(String errorMessage) = DisplayOnBoardingError;
   const factory OnBoardingScreenStates.displayUserDetails(GoogleSignInAccount? currentUserDetails ) = DisplayGoogleUserDetails;
   const factory OnBoardingScreenStates.displayOnBoardingView() = DisplayOnBoardingView;
+  const factory OnBoardingScreenStates.showHomeScreen() = OnBoardingCompleteShowHomeScreen;
 }

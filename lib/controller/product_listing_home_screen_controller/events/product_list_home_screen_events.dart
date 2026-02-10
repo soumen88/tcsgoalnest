@@ -10,4 +10,5 @@ part 'product_list_home_screen_events.freezed.dart';
 sealed class ProductListHomeScreenEvents with _$ProductListHomeScreenEvents{
   const factory ProductListHomeScreenEvents.loadProductsFromServer() = LoadProductsFromServerEvent;
   const factory ProductListHomeScreenEvents.filterProducts(FilterEnum filter) = FilterProductsEvent;
+  const factory ProductListHomeScreenEvents.startOnBoarding() = StartOnBoardingEvent;
 }

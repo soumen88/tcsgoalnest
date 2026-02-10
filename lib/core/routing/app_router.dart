@@ -78,7 +78,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       page: ProductListHomeRoute.page,
       path: "/productListHome",
-      //initial: true
+      initial: true
     ),
     AutoRoute(
         page: MethodChannelRoute.page,
@@ -87,7 +87,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       page: OnBoardingRoute.page,
       path: "/onBoarding",
-      initial: true
+      //initial: true
     ),
   ];
 }

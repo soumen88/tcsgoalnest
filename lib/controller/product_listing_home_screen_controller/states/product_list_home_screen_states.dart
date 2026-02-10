@@ -13,4 +13,5 @@ sealed class ProductListHomeScreenStates with _$ProductListHomeScreenStates{
   const factory ProductListHomeScreenStates.productLoadingView() = DisplayProductLoadingView;
   const factory ProductListHomeScreenStates.productErrorView(String errorMessage) = DisplayProductErrorView;
   const factory ProductListHomeScreenStates.displayProductList(List<ProductDataModel> productList) = DisplayProductList;
+  const factory ProductListHomeScreenStates.showOnBoardingScreen() = ShowOnBoardingScreen;
 }

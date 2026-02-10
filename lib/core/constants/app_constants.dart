@@ -47,5 +47,6 @@ class AppConstants {
   static const String kUserName = "user_name";
   static const String kUserEmail = "user_email";
   static const String kUserId = "user_id";
+  static const String kHasUserSignedIn = "has_signed_in";
 
 }

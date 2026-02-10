@@ -126,6 +126,7 @@ class OnBoardingBloc extends Bloc<OnBoardingScreenEvents, OnBoardingScreenStates
       _keyValueStore.insertKey(keyName: AppConstants.kUserName, value: _currentUser?.displayName ?? '');
       _keyValueStore.insertKey(keyName: AppConstants.kUserEmail, value: _currentUser?.email ?? '');
       _keyValueStore.insertKey(keyName: AppConstants.kUserId, value: _currentUser?.id ?? '');
+      _keyValueStore.insertKey(keyName: AppConstants.kHasUserSignedIn, value: "yes");
       add(OnBoardingScreenEvents.signInSuccessEvent());
     }
   }
@@ -151,7 +152,8 @@ class OnBoardingBloc extends Bloc<OnBoardingScreenEvents, OnBoardingScreenStates
 
   Future<void> _signInSuccess(SigninInSuccessEvent event, Emitter<OnBoardingScreenStates> emit) async{
     if(_currentUser != null){
-      emit(OnBoardingScreenStates.displayUserDetails(_currentUser));
+      //emit(OnBoardingScreenStates.displayUserDetails(_currentUser));
+      emit(OnBoardingScreenStates.showHomeScreen());
     }
 
   }

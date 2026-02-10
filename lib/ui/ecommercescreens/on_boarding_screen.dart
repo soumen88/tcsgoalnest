@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,6 +10,7 @@ import 'package:tcsgoalnest/controller/onboarding_screen_controller/on_boarding_
 import 'package:tcsgoalnest/controller/onboarding_screen_controller/states/on_boarding_screen_states.dart';
 import 'package:tcsgoalnest/core/constants/color_constants.dart';
 import 'package:tcsgoalnest/core/constants/image_constants.dart';
+import 'package:tcsgoalnest/core/routing/app_router.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/bold_text_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/custom_app_bar.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/custom_loader.dart';
@@ -30,7 +32,7 @@ class OnBoardingScreen extends StatelessWidget {
         create: (BuildContext context) => OnBoardingBloc()..add(const OnBoardingScreenEvents.initOnBoardingEvent()),
         child: BlocConsumer<OnBoardingBloc, OnBoardingScreenStates>(
             builder: (BuildContext context, OnBoardingScreenStates states){
-              return states.when(
+              return states.maybeWhen(
                   displayLoadingView: (){
                     return CustomLoader();
                   },
@@ -100,12 +102,21 @@ class OnBoardingScreen extends StatelessWidget {
                       ),
 
                     );
+                  },
+                  orElse: (){
+                    return DisplayErrorWidget(
+                      errorMessage: "Something went wrong! Try in sometime",
+                    );
                   }
               );
 
             },
             listener: (BuildContext context, OnBoardingScreenStates states){
-
+                states.whenOrNull(
+                  showHomeScreen: (){
+                    context.router.replace(const ProductListHomeRoute());
+                  }
+                );
             }
         ),
     );
