@@ -1,8 +1,10 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:tcsgoalnest/ui/screens/method_channel_screen.dart';
 import 'package:tcsgoalnest/ui/screens/person_singleton_db_insert_screen.dart';
 
+import '../../data/ecommercemodels/product_data_model.dart';
 import '../../ui/screens/display_common_widgets_screen.dart';
 import '../../ui/screens/splash_screen.dart';
 import '../../ui/screens/stream_example_screen.dart';
@@ -16,6 +18,7 @@ import '../../ui/screens/examples_screen.dart';
 import '../../ui/screens/goal_tracker_screen.dart';
 import '../../ui/ecommercescreens/product_list_home_screen.dart';
 import '../../ui/ecommercescreens/on_boarding_screen.dart';
+import '../../ui/ecommercescreens/product_description_screen.dart';
 import '../../core/utils/on_boarding_enum.dart';
 
 part 'app_router.gr.dart';
@@ -88,6 +91,10 @@ class AppRouter extends RootStackRouter {
       page: OnBoardingRoute.page,
       path: "/onBoarding",
       initial: true
+    ),
+    AutoRoute(
+      page: ProductDescriptionRoute.page,
+      path: "/productDescription",
     ),
   ];
 }

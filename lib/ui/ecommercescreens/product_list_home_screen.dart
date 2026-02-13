@@ -58,6 +58,9 @@ class ProductListHomeScreen extends StatelessWidget {
                             ProductDataModel currentProduct = productList[index];
                             return ProductItemWidget(
                               productDetails: currentProduct,
+                              onProductItemClick: (){
+                                context.router.push(ProductDescriptionRoute(productDataModel: currentProduct));
+                              },
                             );
                           },
 

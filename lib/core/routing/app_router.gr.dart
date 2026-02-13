@@ -171,6 +171,60 @@ class PersonSingletonDbReadRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [ProductDescriptionScreen]
+class ProductDescriptionRoute
+    extends PageRouteInfo<ProductDescriptionRouteArgs> {
+  ProductDescriptionRoute({
+    Key? key,
+    required ProductDataModel productDataModel,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ProductDescriptionRoute.name,
+         args: ProductDescriptionRouteArgs(
+           key: key,
+           productDataModel: productDataModel,
+         ),
+         initialChildren: children,
+       );
+
+  static const String name = 'ProductDescriptionRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ProductDescriptionRouteArgs>();
+      return ProductDescriptionScreen(
+        key: args.key,
+        productDataModel: args.productDataModel,
+      );
+    },
+  );
+}
+
+class ProductDescriptionRouteArgs {
+  const ProductDescriptionRouteArgs({this.key, required this.productDataModel});
+
+  final Key? key;
+
+  final ProductDataModel productDataModel;
+
+  @override
+  String toString() {
+    return 'ProductDescriptionRouteArgs{key: $key, productDataModel: $productDataModel}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ProductDescriptionRouteArgs) return false;
+    return key == other.key && productDataModel == other.productDataModel;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ productDataModel.hashCode;
+}
+
+/// generated route for
 /// [ProductListHomeScreen]
 class ProductListHomeRoute extends PageRouteInfo<ProductListHomeRouteArgs> {
   ProductListHomeRoute({
