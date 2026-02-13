@@ -12,6 +12,7 @@ import 'package:tcsgoalnest/core/constants/color_constants.dart';
 import 'package:tcsgoalnest/core/repository/api_repository.dart';
 import 'package:tcsgoalnest/core/routing/app_router.dart';
 import 'package:tcsgoalnest/core/utils/filter_enum.dart';
+import 'package:tcsgoalnest/core/utils/on_boarding_enum.dart';
 import 'package:tcsgoalnest/data/ecommercemodels/product_data_model.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/custom_app_bar.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/custom_loader.dart';
@@ -24,12 +25,16 @@ import '../commonwidgets/regular_text_widget.dart';
 @RoutePage()
 class ProductListHomeScreen extends StatelessWidget {
   final _key = GlobalKey<ExpandableFabState>();
+  final OnBoardingEnum onBoardType;
+
+
+  ProductListHomeScreen({required this.onBoardType});
 
   @override
   Widget build(BuildContext context) {
 
     return BlocProvider(
-        create: (BuildContext context) => ProductListingHomeBloc()..add(const ProductListHomeScreenEvents.loadProductsFromServer()),
+        create: (BuildContext context) => ProductListingHomeBloc()..add(ProductListHomeScreenEvents.loadProductsFromServer(onBoardType)),
         child: BlocConsumer<ProductListingHomeBloc, ProductListHomeScreenStates>(
             builder: (BuildContext context, ProductListHomeScreenStates states){
               return states.maybeWhen(

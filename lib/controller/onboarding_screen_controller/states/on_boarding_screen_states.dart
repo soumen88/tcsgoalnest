@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tcsgoalnest/core/schema/goal_store_data.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:tcsgoalnest/core/utils/on_boarding_enum.dart';
 part 'on_boarding_screen_states.freezed.dart';
 
 ///flutter pub run build_runner build --delete-conflicting-outputs
@@ -10,5 +11,5 @@ sealed class OnBoardingScreenStates with _$OnBoardingScreenStates{
   const factory OnBoardingScreenStates.error(String errorMessage) = DisplayOnBoardingError;
   const factory OnBoardingScreenStates.displayUserDetails(GoogleSignInAccount? currentUserDetails ) = DisplayGoogleUserDetails;
   const factory OnBoardingScreenStates.displayOnBoardingView() = DisplayOnBoardingView;
-  const factory OnBoardingScreenStates.showHomeScreen() = OnBoardingCompleteShowHomeScreen;
+  const factory OnBoardingScreenStates.showHomeScreen(OnBoardingEnum buttonType) = OnBoardingCompleteShowHomeScreen;
 }

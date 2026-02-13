@@ -172,18 +172,46 @@ class PersonSingletonDbReadRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [ProductListHomeScreen]
-class ProductListHomeRoute extends PageRouteInfo<void> {
-  const ProductListHomeRoute({List<PageRouteInfo>? children})
-    : super(ProductListHomeRoute.name, initialChildren: children);
+class ProductListHomeRoute extends PageRouteInfo<ProductListHomeRouteArgs> {
+  ProductListHomeRoute({
+    required OnBoardingEnum onBoardType,
+    List<PageRouteInfo>? children,
+  }) : super(
+         ProductListHomeRoute.name,
+         args: ProductListHomeRouteArgs(onBoardType: onBoardType),
+         initialChildren: children,
+       );
 
   static const String name = 'ProductListHomeRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return ProductListHomeScreen();
+      final args = data.argsAs<ProductListHomeRouteArgs>();
+      return ProductListHomeScreen(onBoardType: args.onBoardType);
     },
   );
+}
+
+class ProductListHomeRouteArgs {
+  const ProductListHomeRouteArgs({required this.onBoardType});
+
+  final OnBoardingEnum onBoardType;
+
+  @override
+  String toString() {
+    return 'ProductListHomeRouteArgs{onBoardType: $onBoardType}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ProductListHomeRouteArgs) return false;
+    return onBoardType == other.onBoardType;
+  }
+
+  @override
+  int get hashCode => onBoardType.hashCode;
 }
 
 /// generated route for

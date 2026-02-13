@@ -11,6 +11,7 @@ import 'package:tcsgoalnest/controller/onboarding_screen_controller/states/on_bo
 import 'package:tcsgoalnest/core/constants/color_constants.dart';
 import 'package:tcsgoalnest/core/constants/image_constants.dart';
 import 'package:tcsgoalnest/core/routing/app_router.dart';
+import 'package:tcsgoalnest/core/utils/on_boarding_enum.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/bold_text_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/custom_app_bar.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/custom_loader.dart';
@@ -89,7 +90,7 @@ class OnBoardingScreen extends StatelessWidget {
                                   child: FilledButtonWidget(
                                     buttonCaption: "Skip this time",
                                     onButtonPress: (){
-
+                                        BlocProvider.of<OnBoardingBloc>(context).add(const OnBoardingScreenEvents.skipSignInEvent());
                                     },
                                   ),
                                 ),
@@ -113,8 +114,8 @@ class OnBoardingScreen extends StatelessWidget {
             },
             listener: (BuildContext context, OnBoardingScreenStates states){
                 states.whenOrNull(
-                  showHomeScreen: (){
-                    context.router.replace(const ProductListHomeRoute());
+                  showHomeScreen: (OnBoardingEnum buttonType){
+                    context.router.replace(ProductListHomeRoute(onBoardType : buttonType));
                   }
                 );
             }

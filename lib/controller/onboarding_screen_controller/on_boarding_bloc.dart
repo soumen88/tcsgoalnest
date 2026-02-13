@@ -6,6 +6,7 @@ import 'package:tcsgoalnest/controller/onboarding_screen_controller/states/on_bo
 import 'package:tcsgoalnest/core/constants/app_constants.dart';
 import 'package:tcsgoalnest/core/dependency/injectable_setup.dart';
 import 'package:tcsgoalnest/core/table/key_value_store_manager.dart';
+import 'package:tcsgoalnest/core/utils/on_boarding_enum.dart';
 import 'package:tcsgoalnest/core/utils/pretty_logger_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -18,7 +19,7 @@ class OnBoardingBloc extends Bloc<OnBoardingScreenEvents, OnBoardingScreenStates
   String? clientId;
   String? serverClientId;
   GoogleSignInAccount? _currentUser;
-
+  late OnBoardingEnum buttonType;
   ///Reading parameters like name, email , gmail id only and not allowing users to create account
   List<String> scopes = <String>[
     'https://www.googleapis.com/auth/contacts.readonly',
@@ -48,11 +49,13 @@ class OnBoardingBloc extends Bloc<OnBoardingScreenEvents, OnBoardingScreenStates
   }
 
   Future<void> _startGoogleSignInUsingFirebase(GoogleSigninInOnBoardingEvent event, Emitter<OnBoardingScreenStates> emit) async{
+    buttonType = OnBoardingEnum.GOOGLE_SIGN_METHOD;
     await startGoogleSignIn();
   }
 
   Future<void> _skipSignIn(SkipSigninInOnBoardingEvent event, Emitter<OnBoardingScreenStates> emit) async{
-
+    buttonType = OnBoardingEnum.SKIP_SIGN_METHOD;
+    emit(OnBoardingScreenStates.showHomeScreen(buttonType));
   }
 
   ///Step - 1
@@ -153,7 +156,7 @@ class OnBoardingBloc extends Bloc<OnBoardingScreenEvents, OnBoardingScreenStates
   Future<void> _signInSuccess(SigninInSuccessEvent event, Emitter<OnBoardingScreenStates> emit) async{
     if(_currentUser != null){
       //emit(OnBoardingScreenStates.displayUserDetails(_currentUser));
-      emit(OnBoardingScreenStates.showHomeScreen());
+      emit(OnBoardingScreenStates.showHomeScreen(buttonType));
     }
 
   }

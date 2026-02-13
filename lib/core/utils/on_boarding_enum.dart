@@ -1,0 +1,4 @@
+enum OnBoardingEnum {
+  GOOGLE_SIGN_METHOD,
+  SKIP_SIGN_METHOD
+}

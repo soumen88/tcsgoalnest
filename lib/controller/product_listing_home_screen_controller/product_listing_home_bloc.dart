@@ -6,6 +6,7 @@ import 'package:tcsgoalnest/core/dependency/injectable_setup.dart';
 import 'package:tcsgoalnest/core/repository/api_repository.dart';
 import 'package:tcsgoalnest/core/table/key_value_store_manager.dart';
 import 'package:tcsgoalnest/core/utils/filter_enum.dart';
+import 'package:tcsgoalnest/core/utils/on_boarding_enum.dart';
 import 'package:tcsgoalnest/core/utils/pretty_logger_util.dart';
 import 'package:tcsgoalnest/data/ecommercemodels/product_data_model.dart';
 
@@ -27,14 +28,22 @@ class ProductListingHomeBloc extends Bloc<ProductListHomeScreenEvents, ProductLi
   }
 
   Future<void> _getProductList(LoadProductsFromServerEvent event, Emitter<ProductListHomeScreenStates> emit) async{
-    String? hasUserSignedInBefore =  _keyValueStore.getValue(AppConstants.kHasUserSignedIn);
-    if(hasUserSignedInBefore != null && hasUserSignedInBefore == "yes"){
-      _productListReceived = await _apiRepository.hitServerToGetProducts();
-      emit(ProductListHomeScreenStates.displayProductList(_productListReceived));
+    switch(event.signInType){
+      case OnBoardingEnum.GOOGLE_SIGN_METHOD:
+        String? hasUserSignedInBefore =  _keyValueStore.getValue(AppConstants.kHasUserSignedIn);
+        if(hasUserSignedInBefore != null && hasUserSignedInBefore == "yes"){
+          _productListReceived = await _apiRepository.hitServerToGetProducts();
+          emit(ProductListHomeScreenStates.displayProductList(_productListReceived));
+        }
+        else{
+          add(StartOnBoardingEvent());
+        }
+      case OnBoardingEnum.SKIP_SIGN_METHOD:
+        _productListReceived = await _apiRepository.hitServerToGetProducts();
+        emit(ProductListHomeScreenStates.displayProductList(_productListReceived));
+        break;
     }
-    else{
-      add(StartOnBoardingEvent());
-    }
+
   }
 
   Future<void> _filterProductList(FilterProductsEvent event, Emitter<ProductListHomeScreenStates> emit) async{
