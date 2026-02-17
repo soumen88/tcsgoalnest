@@ -9,4 +9,5 @@ part 'ecommerce_splash_screen_events.freezed.dart';
 sealed class EcommerceSplashScreenEvents with _$EcommerceSplashScreenEvents{
     const factory EcommerceSplashScreenEvents.loadOffersFromFirebase() = LoadOffersFromFirebaseEvent;
     const factory EcommerceSplashScreenEvents.showSplashScreen(List<OfferDetailsModel> offerList) = ShowSplashScreenEvent;
+    const factory EcommerceSplashScreenEvents.startNextScreen() = StartNextScreenEvent;
 }

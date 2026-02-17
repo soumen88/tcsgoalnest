@@ -9,18 +9,21 @@ import 'package:tcsgoalnest/core/utils/firebase_remote_config_service.dart';
 import 'package:tcsgoalnest/data/ecommercemodels/offer_details_model.dart';
 
 import '../../core/constants/app_constants.dart';
+import '../../core/table/key_value_store_manager.dart';
 import '../../data/ecommercemodels/offer_list_model.dart';
 
 class EcommerceSplashBloc extends Bloc<EcommerceSplashScreenEvents, EcommerceSplashScreenStates> {
   final _logger = locator<PrettyLoggerUtil>();
   final _TAG = "EcommerceSplashBloc";
   final FirebaseRemoteConfigService _remoteConfigService = FirebaseRemoteConfigService();
-  
+  final _keyValueStore = locator<KeyValueStoreManager>();
+
   EcommerceSplashBloc() : super(EcommerceSplashScreenStates.loadingView()) {
     on<EcommerceSplashScreenEvents>((event, emit) async {
       await event.map(
         loadOffersFromFirebase: (event) async => await _onLoadOffersFromFirebase(event, emit),
         showSplashScreen: (event) async => await _onShowSplashScreen(event, emit),
+        startNextScreen: (event) async => await _onStartNextScreen(event, emit),
       );
     });
   }
@@ -42,5 +45,10 @@ class EcommerceSplashBloc extends Bloc<EcommerceSplashScreenEvents, EcommerceSpl
 
   Future<void> _onShowSplashScreen(ShowSplashScreenEvent event, Emitter<EcommerceSplashScreenStates> emit) async {
     emit(EcommerceSplashScreenStates.displaySplashScreen(event.offerList));
+  }
+
+  Future<void> _onStartNextScreen(StartNextScreenEvent event, Emitter<EcommerceSplashScreenStates> emit) async {
+    bool hasUserSignedIn = _keyValueStore.getValue(AppConstants.kHasUserSignedIn) == "yes";
+    emit(EcommerceSplashScreenStates.showNextScreen(hasUserSignedIn));
   }
 }

@@ -9,4 +9,5 @@ sealed class EcommerceSplashScreenStates with _$EcommerceSplashScreenStates {
     const factory EcommerceSplashScreenStates.loadingView() = SplashLoadingView;
     const factory EcommerceSplashScreenStates.errorView(String errorMessage) = SplashErrorView;
     const factory EcommerceSplashScreenStates.displaySplashScreen(List<OfferDetailsModel> offerList) = DisplayEcommerceSplashScreen;
+    const factory EcommerceSplashScreenStates.showNextScreen(bool hasUserSignedIn) = ShowNextScreen;
 }

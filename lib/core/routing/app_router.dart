@@ -91,7 +91,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       page: OnBoardingRoute.page,
       path: "/onBoarding",
-      initial: true
+      //initial: true
     ),
     AutoRoute(
       page: ProductDescriptionRoute.page,
@@ -100,7 +100,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       page: EcommerceSplashRoute.page,
       path: "/ecommerceSplash",
-      //initial: true
+      initial: true
     ),
   ];
 }

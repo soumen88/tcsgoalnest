@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -11,12 +12,15 @@ import 'package:tcsgoalnest/ui/commonwidgets/display_error_widget.dart';
 import 'package:tcsgoalnest/data/ecommercemodels/offer_details_model.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/display_logo_body_animation_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/ecommercesplash/banner_card_widget.dart';
+import 'package:tcsgoalnest/ui/commonwidgets/empty_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/regular_text_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import '../../core/constants/app_constants.dart';
 import '../../core/constants/color_constants.dart';
 import '../../core/constants/image_constants.dart';
+import '../../core/routing/app_router.dart';
+import '../../core/utils/on_boarding_enum.dart';
 import '../commonwidgets/bold_text_widget.dart';
 
 @RoutePage()
@@ -38,7 +42,7 @@ class _EcommerceSplashScreenState extends State<EcommerceSplashScreen> {
           EcommerceSplashBloc()..add(EcommerceSplashScreenEvents.loadOffersFromFirebase()),
       child: BlocConsumer<EcommerceSplashBloc, EcommerceSplashScreenStates>(
         builder: (BuildContext context, EcommerceSplashScreenStates state) {
-          return state.when(
+          return state.maybeWhen(
             loadingView: () => CustomLoader(),
             errorView: (String errorMessage) =>
                 DisplayErrorWidget(errorMessage: errorMessage),
@@ -135,14 +139,31 @@ class _EcommerceSplashScreenState extends State<EcommerceSplashScreen> {
                 ),
                 bottomNavigationBar: SafeArea(
                   child: BottomNavigationButton(
-                      buttonCaption: "Let's Explore"
+                      buttonCaption: "Let's Explore",
+                      onButtonPress: (){
+                        BlocProvider.of<EcommerceSplashBloc>(context).add(EcommerceSplashScreenEvents.startNextScreen());
+                      },
                   ),
                 ),
               );
             },
+            orElse: (){
+              return EmptyWidget();
+            }
           );
         },
-        listener: (context, state) {},
+        listener: (BuildContext context, EcommerceSplashScreenStates state) {
+          state.whenOrNull(
+            showNextScreen: (bool hasUserSignedIn) {
+              if(hasUserSignedIn){
+                context.router.replace(ProductListHomeRoute(onBoardType: OnBoardingEnum.GOOGLE_SIGN_METHOD));
+              }
+              else{
+                context.router.replace(OnBoardingRoute());
+              }
+            },
+          );
+        },
       ),
     );
   }

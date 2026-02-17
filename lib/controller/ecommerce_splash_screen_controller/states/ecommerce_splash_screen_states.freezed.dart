@@ -55,13 +55,14 @@ extension EcommerceSplashScreenStatesPatterns on EcommerceSplashScreenStates {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( SplashLoadingView value)?  loadingView,TResult Function( SplashErrorView value)?  errorView,TResult Function( DisplayEcommerceSplashScreen value)?  displaySplashScreen,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( SplashLoadingView value)?  loadingView,TResult Function( SplashErrorView value)?  errorView,TResult Function( DisplayEcommerceSplashScreen value)?  displaySplashScreen,TResult Function( ShowNextScreen value)?  showNextScreen,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case SplashLoadingView() when loadingView != null:
 return loadingView(_that);case SplashErrorView() when errorView != null:
 return errorView(_that);case DisplayEcommerceSplashScreen() when displaySplashScreen != null:
-return displaySplashScreen(_that);case _:
+return displaySplashScreen(_that);case ShowNextScreen() when showNextScreen != null:
+return showNextScreen(_that);case _:
   return orElse();
 
 }
@@ -79,13 +80,14 @@ return displaySplashScreen(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( SplashLoadingView value)  loadingView,required TResult Function( SplashErrorView value)  errorView,required TResult Function( DisplayEcommerceSplashScreen value)  displaySplashScreen,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( SplashLoadingView value)  loadingView,required TResult Function( SplashErrorView value)  errorView,required TResult Function( DisplayEcommerceSplashScreen value)  displaySplashScreen,required TResult Function( ShowNextScreen value)  showNextScreen,}){
 final _that = this;
 switch (_that) {
 case SplashLoadingView():
 return loadingView(_that);case SplashErrorView():
 return errorView(_that);case DisplayEcommerceSplashScreen():
-return displaySplashScreen(_that);}
+return displaySplashScreen(_that);case ShowNextScreen():
+return showNextScreen(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -99,13 +101,14 @@ return displaySplashScreen(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( SplashLoadingView value)?  loadingView,TResult? Function( SplashErrorView value)?  errorView,TResult? Function( DisplayEcommerceSplashScreen value)?  displaySplashScreen,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( SplashLoadingView value)?  loadingView,TResult? Function( SplashErrorView value)?  errorView,TResult? Function( DisplayEcommerceSplashScreen value)?  displaySplashScreen,TResult? Function( ShowNextScreen value)?  showNextScreen,}){
 final _that = this;
 switch (_that) {
 case SplashLoadingView() when loadingView != null:
 return loadingView(_that);case SplashErrorView() when errorView != null:
 return errorView(_that);case DisplayEcommerceSplashScreen() when displaySplashScreen != null:
-return displaySplashScreen(_that);case _:
+return displaySplashScreen(_that);case ShowNextScreen() when showNextScreen != null:
+return showNextScreen(_that);case _:
   return null;
 
 }
@@ -122,12 +125,13 @@ return displaySplashScreen(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loadingView,TResult Function( String errorMessage)?  errorView,TResult Function( List<OfferDetailsModel> offerList)?  displaySplashScreen,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loadingView,TResult Function( String errorMessage)?  errorView,TResult Function( List<OfferDetailsModel> offerList)?  displaySplashScreen,TResult Function( bool hasUserSignedIn)?  showNextScreen,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case SplashLoadingView() when loadingView != null:
 return loadingView();case SplashErrorView() when errorView != null:
 return errorView(_that.errorMessage);case DisplayEcommerceSplashScreen() when displaySplashScreen != null:
-return displaySplashScreen(_that.offerList);case _:
+return displaySplashScreen(_that.offerList);case ShowNextScreen() when showNextScreen != null:
+return showNextScreen(_that.hasUserSignedIn);case _:
   return orElse();
 
 }
@@ -145,12 +149,13 @@ return displaySplashScreen(_that.offerList);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loadingView,required TResult Function( String errorMessage)  errorView,required TResult Function( List<OfferDetailsModel> offerList)  displaySplashScreen,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loadingView,required TResult Function( String errorMessage)  errorView,required TResult Function( List<OfferDetailsModel> offerList)  displaySplashScreen,required TResult Function( bool hasUserSignedIn)  showNextScreen,}) {final _that = this;
 switch (_that) {
 case SplashLoadingView():
 return loadingView();case SplashErrorView():
 return errorView(_that.errorMessage);case DisplayEcommerceSplashScreen():
-return displaySplashScreen(_that.offerList);}
+return displaySplashScreen(_that.offerList);case ShowNextScreen():
+return showNextScreen(_that.hasUserSignedIn);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -164,12 +169,13 @@ return displaySplashScreen(_that.offerList);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loadingView,TResult? Function( String errorMessage)?  errorView,TResult? Function( List<OfferDetailsModel> offerList)?  displaySplashScreen,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loadingView,TResult? Function( String errorMessage)?  errorView,TResult? Function( List<OfferDetailsModel> offerList)?  displaySplashScreen,TResult? Function( bool hasUserSignedIn)?  showNextScreen,}) {final _that = this;
 switch (_that) {
 case SplashLoadingView() when loadingView != null:
 return loadingView();case SplashErrorView() when errorView != null:
 return errorView(_that.errorMessage);case DisplayEcommerceSplashScreen() when displaySplashScreen != null:
-return displaySplashScreen(_that.offerList);case _:
+return displaySplashScreen(_that.offerList);case ShowNextScreen() when showNextScreen != null:
+return showNextScreen(_that.hasUserSignedIn);case _:
   return null;
 
 }
@@ -341,6 +347,72 @@ class _$DisplayEcommerceSplashScreenCopyWithImpl<$Res>
   return _then(DisplayEcommerceSplashScreen(
 null == offerList ? _self._offerList : offerList // ignore: cast_nullable_to_non_nullable
 as List<OfferDetailsModel>,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class ShowNextScreen implements EcommerceSplashScreenStates {
+  const ShowNextScreen(this.hasUserSignedIn);
+  
+
+ final  bool hasUserSignedIn;
+
+/// Create a copy of EcommerceSplashScreenStates
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ShowNextScreenCopyWith<ShowNextScreen> get copyWith => _$ShowNextScreenCopyWithImpl<ShowNextScreen>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ShowNextScreen&&(identical(other.hasUserSignedIn, hasUserSignedIn) || other.hasUserSignedIn == hasUserSignedIn));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,hasUserSignedIn);
+
+@override
+String toString() {
+  return 'EcommerceSplashScreenStates.showNextScreen(hasUserSignedIn: $hasUserSignedIn)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ShowNextScreenCopyWith<$Res> implements $EcommerceSplashScreenStatesCopyWith<$Res> {
+  factory $ShowNextScreenCopyWith(ShowNextScreen value, $Res Function(ShowNextScreen) _then) = _$ShowNextScreenCopyWithImpl;
+@useResult
+$Res call({
+ bool hasUserSignedIn
+});
+
+
+
+
+}
+/// @nodoc
+class _$ShowNextScreenCopyWithImpl<$Res>
+    implements $ShowNextScreenCopyWith<$Res> {
+  _$ShowNextScreenCopyWithImpl(this._self, this._then);
+
+  final ShowNextScreen _self;
+  final $Res Function(ShowNextScreen) _then;
+
+/// Create a copy of EcommerceSplashScreenStates
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? hasUserSignedIn = null,}) {
+  return _then(ShowNextScreen(
+null == hasUserSignedIn ? _self.hasUserSignedIn : hasUserSignedIn // ignore: cast_nullable_to_non_nullable
+as bool,
   ));
 }
 

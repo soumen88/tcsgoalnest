@@ -55,12 +55,13 @@ extension EcommerceSplashScreenEventsPatterns on EcommerceSplashScreenEvents {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( LoadOffersFromFirebaseEvent value)?  loadOffersFromFirebase,TResult Function( ShowSplashScreenEvent value)?  showSplashScreen,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( LoadOffersFromFirebaseEvent value)?  loadOffersFromFirebase,TResult Function( ShowSplashScreenEvent value)?  showSplashScreen,TResult Function( StartNextScreenEvent value)?  startNextScreen,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case LoadOffersFromFirebaseEvent() when loadOffersFromFirebase != null:
 return loadOffersFromFirebase(_that);case ShowSplashScreenEvent() when showSplashScreen != null:
-return showSplashScreen(_that);case _:
+return showSplashScreen(_that);case StartNextScreenEvent() when startNextScreen != null:
+return startNextScreen(_that);case _:
   return orElse();
 
 }
@@ -78,12 +79,13 @@ return showSplashScreen(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( LoadOffersFromFirebaseEvent value)  loadOffersFromFirebase,required TResult Function( ShowSplashScreenEvent value)  showSplashScreen,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( LoadOffersFromFirebaseEvent value)  loadOffersFromFirebase,required TResult Function( ShowSplashScreenEvent value)  showSplashScreen,required TResult Function( StartNextScreenEvent value)  startNextScreen,}){
 final _that = this;
 switch (_that) {
 case LoadOffersFromFirebaseEvent():
 return loadOffersFromFirebase(_that);case ShowSplashScreenEvent():
-return showSplashScreen(_that);}
+return showSplashScreen(_that);case StartNextScreenEvent():
+return startNextScreen(_that);}
 }
 /// A variant of `map` that fallback to returning `null`.
 ///
@@ -97,12 +99,13 @@ return showSplashScreen(_that);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( LoadOffersFromFirebaseEvent value)?  loadOffersFromFirebase,TResult? Function( ShowSplashScreenEvent value)?  showSplashScreen,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( LoadOffersFromFirebaseEvent value)?  loadOffersFromFirebase,TResult? Function( ShowSplashScreenEvent value)?  showSplashScreen,TResult? Function( StartNextScreenEvent value)?  startNextScreen,}){
 final _that = this;
 switch (_that) {
 case LoadOffersFromFirebaseEvent() when loadOffersFromFirebase != null:
 return loadOffersFromFirebase(_that);case ShowSplashScreenEvent() when showSplashScreen != null:
-return showSplashScreen(_that);case _:
+return showSplashScreen(_that);case StartNextScreenEvent() when startNextScreen != null:
+return startNextScreen(_that);case _:
   return null;
 
 }
@@ -119,11 +122,12 @@ return showSplashScreen(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loadOffersFromFirebase,TResult Function( List<OfferDetailsModel> offerList)?  showSplashScreen,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loadOffersFromFirebase,TResult Function( List<OfferDetailsModel> offerList)?  showSplashScreen,TResult Function()?  startNextScreen,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case LoadOffersFromFirebaseEvent() when loadOffersFromFirebase != null:
 return loadOffersFromFirebase();case ShowSplashScreenEvent() when showSplashScreen != null:
-return showSplashScreen(_that.offerList);case _:
+return showSplashScreen(_that.offerList);case StartNextScreenEvent() when startNextScreen != null:
+return startNextScreen();case _:
   return orElse();
 
 }
@@ -141,11 +145,12 @@ return showSplashScreen(_that.offerList);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loadOffersFromFirebase,required TResult Function( List<OfferDetailsModel> offerList)  showSplashScreen,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loadOffersFromFirebase,required TResult Function( List<OfferDetailsModel> offerList)  showSplashScreen,required TResult Function()  startNextScreen,}) {final _that = this;
 switch (_that) {
 case LoadOffersFromFirebaseEvent():
 return loadOffersFromFirebase();case ShowSplashScreenEvent():
-return showSplashScreen(_that.offerList);}
+return showSplashScreen(_that.offerList);case StartNextScreenEvent():
+return startNextScreen();}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -159,11 +164,12 @@ return showSplashScreen(_that.offerList);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loadOffersFromFirebase,TResult? Function( List<OfferDetailsModel> offerList)?  showSplashScreen,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loadOffersFromFirebase,TResult? Function( List<OfferDetailsModel> offerList)?  showSplashScreen,TResult? Function()?  startNextScreen,}) {final _that = this;
 switch (_that) {
 case LoadOffersFromFirebaseEvent() when loadOffersFromFirebase != null:
 return loadOffersFromFirebase();case ShowSplashScreenEvent() when showSplashScreen != null:
-return showSplashScreen(_that.offerList);case _:
+return showSplashScreen(_that.offerList);case StartNextScreenEvent() when startNextScreen != null:
+return startNextScreen();case _:
   return null;
 
 }
@@ -274,5 +280,37 @@ as List<OfferDetailsModel>,
 
 
 }
+
+/// @nodoc
+
+
+class StartNextScreenEvent implements EcommerceSplashScreenEvents {
+  const StartNextScreenEvent();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StartNextScreenEvent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'EcommerceSplashScreenEvents.startNextScreen()';
+}
+
+
+}
+
+
+
 
 // dart format on
