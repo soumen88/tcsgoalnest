@@ -43,6 +43,22 @@ class DisplayCommonWidgetsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [EcommerceSplashScreen]
+class EcommerceSplashRoute extends PageRouteInfo<void> {
+  const EcommerceSplashRoute({List<PageRouteInfo>? children})
+    : super(EcommerceSplashRoute.name, initialChildren: children);
+
+  static const String name = 'EcommerceSplashRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const EcommerceSplashScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [ExamplesScreen]
 class ExamplesRoute extends PageRouteInfo<void> {
   const ExamplesRoute({List<PageRouteInfo>? children})

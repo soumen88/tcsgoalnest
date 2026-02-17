@@ -33,14 +33,24 @@ class ProductListingHomeBloc extends Bloc<ProductListHomeScreenEvents, ProductLi
         String? hasUserSignedInBefore =  _keyValueStore.getValue(AppConstants.kHasUserSignedIn);
         if(hasUserSignedInBefore != null && hasUserSignedInBefore == "yes"){
           _productListReceived = await _apiRepository.hitServerToGetProducts();
-          emit(ProductListHomeScreenStates.displayProductList(_productListReceived));
+          if(_productListReceived.isEmpty){
+            emit(ProductListHomeScreenStates.productErrorView("No products Found to be displayed"));
+          }
+          else{
+            emit(ProductListHomeScreenStates.displayProductList(_productListReceived));
+          }
         }
         else{
           add(StartOnBoardingEvent());
         }
       case OnBoardingEnum.SKIP_SIGN_METHOD:
         _productListReceived = await _apiRepository.hitServerToGetProducts();
-        emit(ProductListHomeScreenStates.displayProductList(_productListReceived));
+        if(_productListReceived.isEmpty){
+          emit(ProductListHomeScreenStates.productErrorView("No products Found to be displayed"));
+        }
+        else{
+          emit(ProductListHomeScreenStates.displayProductList(_productListReceived));
+        }
         break;
     }
 

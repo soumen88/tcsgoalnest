@@ -6,4 +6,6 @@ class ColorConstants {
   static const Color kDarkAzureColor = Color(0xff011c50);
   static const Color kWhiteColor = Color(0xffffffff);
   static const Color kBlackColor = Color(0xff000000);
+  static const Color kGreenColor = Color(0xff8bd9a1);
+
 }

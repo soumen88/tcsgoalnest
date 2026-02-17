@@ -19,6 +19,7 @@ import '../../ui/screens/goal_tracker_screen.dart';
 import '../../ui/ecommercescreens/product_list_home_screen.dart';
 import '../../ui/ecommercescreens/on_boarding_screen.dart';
 import '../../ui/ecommercescreens/product_description_screen.dart';
+import '../../ui/ecommercescreens/ecommerce_splash_screen.dart';
 import '../../core/utils/on_boarding_enum.dart';
 
 part 'app_router.gr.dart';
@@ -30,13 +31,12 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
     AutoRoute(
         page: SplashRoute.page,
-        path: "/splash",
+        path: "/ecommerce_splash_screen_controller",
         //initial: true
     ),
     AutoRoute(
         page: DisplayCommonWidgetsRoute.page,
         path: "/commonwidgets",
-
     ),
     AutoRoute(
         page: StreamExampleRoute.page,
@@ -86,6 +86,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
         page: MethodChannelRoute.page,
         path: "/methodchannel",
+        //initial: true
     ),
     AutoRoute(
       page: OnBoardingRoute.page,
@@ -95,6 +96,11 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       page: ProductDescriptionRoute.page,
       path: "/productDescription",
+    ),
+    AutoRoute(
+      page: EcommerceSplashRoute.page,
+      path: "/ecommerceSplash",
+      //initial: true
     ),
   ];
 }

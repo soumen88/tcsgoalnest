@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>805104212172-3ed3l57s1v2vo2ia6pc53c9m6ol6d900.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.805104212172-3ed3l57s1v2vo2ia6pc53c9m6ol6d900</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>805104212172-hu72mgo0t26gkquihuhdngodeh5k58ck.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBEWMwWJpGYIoyOg-xUdpw4Atqpo7dtn78</string>
+	<key>GCM_SENDER_ID</key>
+	<string>805104212172</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.tcs.goalnest.tcsgoalnest</string>
+	<key>PROJECT_ID</key>
+	<string>goalnest-fe00a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>goalnest-fe00a.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:805104212172:ios:e9c4a53750bce8080aca69</string>
+	<key>DATABASE_URL</key>
+	<string>https://goalnest-fe00a-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
