@@ -1,41 +1,32 @@
 import 'package:flutter/services.dart';
+import 'package:tcsgoalnest/core/dependency/injectable_setup.dart';
+import 'package:tcsgoalnest/core/utils/pretty_logger_util.dart';
+
 class MethodChannelCounter {
-  // Create a method channel with the channel name "methodChannelDemo"
-  static MethodChannel methodChannel = const MethodChannel('methodChannelDemo');
-
-  // Define a method to increment the counter on the native side
-  static Future<int> increment({required int counterValue}) async {
-    // Invoke the 'increment' method on the native side with the 'count' argument
-    final result = await methodChannel.invokeMethod<int>('increment', {'count': counterValue});
-
-    // Return the result received from the native side
-    return result!;
+  ///Channel name is where we will create a pipeline. On same pipeline we can send the values as well
+  ///as listen to incoming value
+  static MethodChannel _channel = const MethodChannel("methodChannelDemo");
+  static final _logger = locator<PrettyLoggerUtil>();
+  static final _TAG = "MethodChannelCounter";
+  static int presentCounterValue = 0;
+  static Future<int> randomValue() async{
+      final result = await _channel.invokeMethod<int>("random");
+      _logger.log(TAG: _TAG, message: "Result received from random function $result");
+      presentCounterValue = result ?? -1;
+      return result ?? -1;
   }
 
-  // Define a method to decrement the counter on the native side
-  static Future<int> decrement({required int counterValue}) async {
-    // Invoke the 'decrement' method on the native side with the 'count' argument
-    final result = await methodChannel.invokeMethod<int>('decrement', {'count': counterValue});
-
-    // Return the result received from the native side
-    return result!;
+  static Future<int> increment() async{
+    final result = await _channel.invokeMethod<int>("increment", {'count' : presentCounterValue});
+    _logger.log(TAG: _TAG, message: "Result from increment $result");
+    presentCounterValue = result ?? -1;
+    return presentCounterValue;
   }
 
-  // Define a method to retrieve a random value from the native side
-  static Future<int> randomValue() async {
-    // Invoke the 'random' method on the native side
-    final result = await methodChannel.invokeMethod<int>('random');
-
-    // Return the result received from the native side
-    return result!;
-  }
-
-  // Define a method 'tryMe' (custom method) to interact with the native side
-  static Future<int> tryMe() async {
-    // Invoke the 'tryMe' custom method on the native side
-    final result = await methodChannel.invokeMethod<int>('tryMe');
-
-    // Return the result received from the native side
-    return result!;
+  static Future<int> decrement() async{
+    final result = await _channel.invokeMethod<int>("decrement", {'count' : presentCounterValue});
+    _logger.log(TAG: _TAG, message: "Result from decrement $result");
+    presentCounterValue = result ?? -1;
+    return presentCounterValue;
   }
 }

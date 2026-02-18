@@ -16,6 +16,7 @@ import 'package:objectbox/objectbox.dart' as _i1034;
 import '../../objectbox.g.dart' as _i424;
 import '../network/dio_utils.dart' as _i189;
 import '../table/activity_store_manager.dart' as _i506;
+import '../table/cart_store_manager.dart' as _i95;
 import '../table/goal_store_manager.dart' as _i711;
 import '../table/key_value_store_manager.dart' as _i722;
 import '../table/person_store_manager.dart' as _i574;
@@ -38,6 +39,9 @@ Future<_i174.GetIt> init(
   gh.singleton<_i189.DioUtils>(() => _i189.DioUtils());
   gh.singleton<_i539.LoggerUtil>(() => _i539.LoggerUtil());
   gh.singleton<_i1008.PrettyLoggerUtil>(() => _i1008.PrettyLoggerUtil());
+  gh.lazySingleton<_i95.CartStoreManager>(
+    () => _i95.CartStoreManager(gh<_i424.Store>()),
+  );
   gh.lazySingleton<_i711.GoalStoreManager>(
     () => _i711.GoalStoreManager(gh<_i424.Store>()),
   );

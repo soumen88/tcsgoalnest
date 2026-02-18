@@ -123,22 +123,6 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [MethodChannelScreen]
-class MethodChannelRoute extends PageRouteInfo<void> {
-  const MethodChannelRoute({List<PageRouteInfo>? children})
-    : super(MethodChannelRoute.name, initialChildren: children);
-
-  static const String name = 'MethodChannelRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const MethodChannelScreen();
-    },
-  );
-}
-
-/// generated route for
 /// [OnBoardingScreen]
 class OnBoardingRoute extends PageRouteInfo<void> {
   const OnBoardingRoute({List<PageRouteInfo>? children})

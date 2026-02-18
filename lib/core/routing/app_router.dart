@@ -1,7 +1,6 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:tcsgoalnest/ui/screens/method_channel_screen.dart';
 import 'package:tcsgoalnest/ui/screens/person_singleton_db_insert_screen.dart';
 
 import '../../data/ecommercemodels/product_data_model.dart';
@@ -82,11 +81,6 @@ class AppRouter extends RootStackRouter {
       page: ProductListHomeRoute.page,
       path: "/productListHome",
       //initial: true
-    ),
-    AutoRoute(
-        page: MethodChannelRoute.page,
-        path: "/methodchannel",
-        //initial: true
     ),
     AutoRoute(
       page: OnBoardingRoute.page,

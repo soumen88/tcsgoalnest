@@ -15,6 +15,7 @@ import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'core/schema/activity_tracker_data.dart';
+import 'core/schema/cart_tracker_data.dart';
 import 'core/schema/goal_store_data.dart';
 import 'core/schema/key_value_store_data.dart';
 import 'core/schema/person_store_data.dart';
@@ -200,6 +201,70 @@ final _entities = <obx_int.ModelEntity>[
     relations: <obx_int.ModelRelation>[],
     backlinks: <obx_int.ModelBacklink>[],
   ),
+  obx_int.ModelEntity(
+    id: const obx_int.IdUid(6, 2609736966476276655),
+    name: 'CartTrackerData',
+    lastPropertyId: const obx_int.IdUid(9, 4757893679443202286),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 9050204196015363968),
+        name: 'cartId',
+        type: 6,
+        flags: 1,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(2, 7444737219678193667),
+        name: 'productId',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(3, 7551555909452971428),
+        name: 'quantity',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 439475194028350670),
+        name: 'price',
+        type: 8,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(5, 3629885437645478853),
+        name: 'addedToCartAt',
+        type: 10,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(6, 3979930206116802813),
+        name: 'productName',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(7, 5940902868111272360),
+        name: 'productImage',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(8, 609511835724910071),
+        name: 'productDescription',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(9, 4757893679443202286),
+        name: 'productCategory',
+        type: 9,
+        flags: 0,
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[],
+  ),
 ];
 
 /// Shortcut for [obx.Store.new] that passes [getObjectBoxModel] and for Flutter
@@ -245,7 +310,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
     // Typically, this is done with `dart run build_runner build`.
     generatorVersion: obx_int.GeneratorVersion.v2025_12_16,
     entities: _entities,
-    lastEntityId: const obx_int.IdUid(5, 3293041937283377168),
+    lastEntityId: const obx_int.IdUid(6, 2609736966476276655),
     lastIndexId: const obx_int.IdUid(0, 0),
     lastRelationId: const obx_int.IdUid(0, 0),
     lastSequenceId: const obx_int.IdUid(0, 0),
@@ -514,6 +579,91 @@ obx_int.ModelDefinition getObjectBoxModel() {
         return object;
       },
     ),
+    CartTrackerData: obx_int.EntityDefinition<CartTrackerData>(
+      model: _entities[4],
+      toOneRelations: (CartTrackerData object) => [],
+      toManyRelations: (CartTrackerData object) => {},
+      getId: (CartTrackerData object) => object.cartId,
+      setId: (CartTrackerData object, int id) {
+        object.cartId = id;
+      },
+      objectToFB: (CartTrackerData object, fb.Builder fbb) {
+        final productNameOffset = fbb.writeString(object.productName);
+        final productImageOffset = fbb.writeString(object.productImage);
+        final productDescriptionOffset = fbb.writeString(
+          object.productDescription,
+        );
+        final productCategoryOffset = fbb.writeString(object.productCategory);
+        fbb.startTable(10);
+        fbb.addInt64(0, object.cartId);
+        fbb.addInt64(1, object.productId);
+        fbb.addInt64(2, object.quantity);
+        fbb.addFloat64(3, object.price);
+        fbb.addInt64(4, object.addedToCartAt.millisecondsSinceEpoch);
+        fbb.addOffset(5, productNameOffset);
+        fbb.addOffset(6, productImageOffset);
+        fbb.addOffset(7, productDescriptionOffset);
+        fbb.addOffset(8, productCategoryOffset);
+        fbb.finish(fbb.endTable());
+        return object.cartId;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+        final cartIdParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          4,
+          0,
+        );
+        final productIdParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          6,
+          0,
+        );
+        final quantityParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          8,
+          0,
+        );
+        final priceParam = const fb.Float64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          10,
+          0,
+        );
+        final addedToCartAtParam = DateTime.fromMillisecondsSinceEpoch(
+          const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0),
+        );
+        final productNameParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 14, '');
+        final productImageParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 16, '');
+        final productDescriptionParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 18, '');
+        final productCategoryParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 20, '');
+        final object = CartTrackerData(
+          cartId: cartIdParam,
+          productId: productIdParam,
+          quantity: quantityParam,
+          price: priceParam,
+          addedToCartAt: addedToCartAtParam,
+          productName: productNameParam,
+          productImage: productImageParam,
+          productDescription: productDescriptionParam,
+          productCategory: productCategoryParam,
+        );
+
+        return object;
+      },
+    ),
   };
 
   return obx_int.ModelDefinition(model, bindings);
@@ -643,5 +793,53 @@ class ActivityTrackerData_ {
   /// See [ActivityTrackerData.amountSaved].
   static final amountSaved = obx.QueryDoubleProperty<ActivityTrackerData>(
     _entities[3].properties[5],
+  );
+}
+
+/// [CartTrackerData] entity fields to define ObjectBox queries.
+class CartTrackerData_ {
+  /// See [CartTrackerData.cartId].
+  static final cartId = obx.QueryIntegerProperty<CartTrackerData>(
+    _entities[4].properties[0],
+  );
+
+  /// See [CartTrackerData.productId].
+  static final productId = obx.QueryIntegerProperty<CartTrackerData>(
+    _entities[4].properties[1],
+  );
+
+  /// See [CartTrackerData.quantity].
+  static final quantity = obx.QueryIntegerProperty<CartTrackerData>(
+    _entities[4].properties[2],
+  );
+
+  /// See [CartTrackerData.price].
+  static final price = obx.QueryDoubleProperty<CartTrackerData>(
+    _entities[4].properties[3],
+  );
+
+  /// See [CartTrackerData.addedToCartAt].
+  static final addedToCartAt = obx.QueryDateProperty<CartTrackerData>(
+    _entities[4].properties[4],
+  );
+
+  /// See [CartTrackerData.productName].
+  static final productName = obx.QueryStringProperty<CartTrackerData>(
+    _entities[4].properties[5],
+  );
+
+  /// See [CartTrackerData.productImage].
+  static final productImage = obx.QueryStringProperty<CartTrackerData>(
+    _entities[4].properties[6],
+  );
+
+  /// See [CartTrackerData.productDescription].
+  static final productDescription = obx.QueryStringProperty<CartTrackerData>(
+    _entities[4].properties[7],
+  );
+
+  /// See [CartTrackerData.productCategory].
+  static final productCategory = obx.QueryStringProperty<CartTrackerData>(
+    _entities[4].properties[8],
   );
 }

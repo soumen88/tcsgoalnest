@@ -1,9 +1,14 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:tcsgoalnest/core/constants/color_constants.dart';
+import 'package:tcsgoalnest/core/repository/method_channel_counter.dart';
+import 'package:tcsgoalnest/core/table/cart_store_manager.dart';
 import 'package:tcsgoalnest/data/ecommercemodels/product_data_model.dart';
 import 'package:tcsgoalnest/data/ecommercemodels/product_review_model.dart';
+import 'package:tcsgoalnest/ui/commonwidgets/productdescription/cart_widget.dart';
 
+import '../../core/dependency/injectable_setup.dart';
+import '../../core/schema/cart_tracker_data.dart';
 import '../commonwidgets/bold_text_widget.dart';
 import '../commonwidgets/bottom_navigation_button.dart';
 import '../commonwidgets/custom_app_bar.dart';
@@ -14,11 +19,8 @@ import '../commonwidgets/regular_text_widget.dart';
 @RoutePage()
 class ProductDescriptionScreen extends StatelessWidget {
   final ProductDataModel productDataModel;
-
-  const ProductDescriptionScreen({
-    super.key,
-    required this.productDataModel,
-  });
+  final _cartStoreManager = locator<CartStoreManager>();
+  ProductDescriptionScreen({super.key, required this.productDataModel});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,9 @@ class ProductDescriptionScreen extends StatelessWidget {
                   if (productDataModel.reviewsList != null &&
                       productDataModel.reviewsList!.isNotEmpty) ...[
                     const SizedBox(height: 20),
-                    _buildSectionTitle('Reviews (${productDataModel.reviewsList!.length})'),
+                    _buildSectionTitle(
+                      'Reviews (${productDataModel.reviewsList!.length})',
+                    ),
                     const SizedBox(height: 8),
                     _buildReviewsList(),
                   ],
@@ -67,22 +71,63 @@ class ProductDescriptionScreen extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: CartWidget(
+        productId: productDataModel.productId,
+      ),
       bottomNavigationBar: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: BottomNavigationButton(
+                    buttonCaption: "Random",
+                    onButtonPress: () {
+                      MethodChannelCounter.randomValue();
+                    },
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: TextButton(
+                    child: RegularTextWidget(textToDisplay: "Add to cart +"),
+                    onPressed: () async {
+                      var count = await MethodChannelCounter.increment();
+                      var cartTrackerData = CartTrackerData(
+                        productId: productDataModel.productId,
+                        quantity: count,
+                        price: productDataModel.price.toDouble(),
+                        addedToCartAt: DateTime.now(),
+                        productName: productDataModel.name,
+                        productImage: productDataModel.assetImagePath,
+                        productDescription: productDataModel.description,
+                        productCategory: productDataModel.category,
+                      );
+                      _cartStoreManager.addToCart(cartTrackerData);
+                    },
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: BottomNavigationButton(
+                    buttonCaption: "Decrement",
+                    onButtonPress: () {
+                      MethodChannelCounter.decrement();
+                    },
+                  ),
+                ),
+              ],
+            ),
+
+
             BottomNavigationButton(
-          buttonCaption: "Add to Cart",
-          onButtonPress: (){
-            //TODO: Add to Cart
-          },
-        ),
-        BottomNavigationButton(
-          buttonCaption: "Proceed to Buy",
-          onButtonPress: (){
-            //TODO: Add to Wishlist
-          },
-        ),
+              buttonCaption: "Proceed to Buy",
+              onButtonPress: () {
+                //TODO: Add to Wishlist
+              },
+            ),
           ],
         ),
       ),
@@ -107,7 +152,10 @@ class ProductDescriptionScreen extends StatelessWidget {
   Widget _buildMetaRow() {
     return Row(
       children: [
-        CardChipWidget(label: productDataModel.brand, icon: Icons.branding_watermark),
+        CardChipWidget(
+          label: productDataModel.brand,
+          icon: Icons.branding_watermark,
+        ),
         const SizedBox(width: 8),
         CardChipWidget(label: productDataModel.category, icon: Icons.category),
         const Spacer(),
@@ -134,18 +182,20 @@ class ProductDescriptionScreen extends StatelessWidget {
     );
   }
 
-  
   Widget _buildPriceSection() {
     final discountedPrice = productDataModel.discountedPrice > 0
         ? productDataModel.discountedPrice
-        : (productDataModel.price * (1 - productDataModel.discount / 100)).round();
+        : (productDataModel.price * (1 - productDataModel.discount / 100))
+              .round();
 
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: ColorConstants.kDarkBlueColor.withOpacity(0.06),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: ColorConstants.kDarkBlueColor.withOpacity(0.2)),
+        border: Border.all(
+          color: ColorConstants.kDarkBlueColor.withOpacity(0.2),
+        ),
       ),
       child: Row(
         children: [
@@ -202,9 +252,13 @@ class ProductDescriptionScreen extends StatelessWidget {
             ),
             const SizedBox(width: 6),
             RegularTextWidget(
-              textToDisplay: productDataModel.availability ? 'In stock' : 'Out of stock',
+              textToDisplay: productDataModel.availability
+                  ? 'In stock'
+                  : 'Out of stock',
               fontSize: 14,
-              textColor: productDataModel.availability ? Colors.green.shade800 : Colors.red.shade800,
+              textColor: productDataModel.availability
+                  ? Colors.green.shade800
+                  : Colors.red.shade800,
             ),
           ],
         ),
@@ -250,11 +304,14 @@ class ProductDescriptionScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 10),
-                ...List.generate(5, (i) => Icon(
-                  i < review.rating ? Icons.star : Icons.star_border,
-                  size: 18,
-                  color: Colors.amber,
-                )),
+                ...List.generate(
+                  5,
+                  (i) => Icon(
+                    i < review.rating ? Icons.star : Icons.star_border,
+                    size: 18,
+                    color: Colors.amber,
+                  ),
+                ),
                 const SizedBox(width: 6),
                 RegularTextWidget(
                   textToDisplay: '${review.rating}/5',
