@@ -4,14 +4,15 @@ import 'package:tcsgoalnest/core/constants/color_constants.dart';
 class BottomNavigationButton extends StatelessWidget {
   final String buttonCaption;
   final VoidCallback? onButtonPress;
-  const BottomNavigationButton({super.key, required this.buttonCaption, this.onButtonPress});
+  final Color buttonColor;
+  const BottomNavigationButton({super.key, required this.buttonCaption, this.onButtonPress, this.buttonColor = ColorConstants.kDarkAzureColor});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
 
         style: ButtonStyle(
-            backgroundColor: WidgetStatePropertyAll<Color>(ColorConstants.kDarkAzureColor),
+            backgroundColor: WidgetStatePropertyAll<Color>(buttonColor),
             minimumSize: WidgetStatePropertyAll<Size>(Size(double.infinity, 56.0)), // Sets
             shape: WidgetStatePropertyAll<OutlinedBorder>(
                 RoundedRectangleBorder(

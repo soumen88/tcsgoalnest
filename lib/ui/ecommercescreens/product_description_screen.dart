@@ -5,6 +5,7 @@ import 'package:tcsgoalnest/data/ecommercemodels/product_data_model.dart';
 import 'package:tcsgoalnest/data/ecommercemodels/product_review_model.dart';
 
 import '../commonwidgets/bold_text_widget.dart';
+import '../commonwidgets/bottom_navigation_button.dart';
 import '../commonwidgets/custom_app_bar.dart';
 import '../commonwidgets/italic_text_widget.dart';
 import '../commonwidgets/productdescription/card_chip_widget.dart';
@@ -63,6 +64,25 @@ class ProductDescriptionScreen extends StatelessWidget {
                 ],
               ),
             ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            BottomNavigationButton(
+          buttonCaption: "Add to Cart",
+          onButtonPress: (){
+            //TODO: Add to Cart
+          },
+        ),
+        BottomNavigationButton(
+          buttonCaption: "Proceed to Buy",
+          onButtonPress: (){
+            //TODO: Add to Wishlist
+          },
+        ),
           ],
         ),
       ),
