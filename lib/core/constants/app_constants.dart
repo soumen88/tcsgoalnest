@@ -50,4 +50,6 @@ class AppConstants {
   static const String kUserId = "user_id";
   static const String kHasUserSignedIn = "has_signed_in";
 
+  static const String kCommonErrorMessage = "Something went wrong!";
+
 }

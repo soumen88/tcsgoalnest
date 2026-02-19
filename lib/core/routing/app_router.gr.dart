@@ -269,6 +269,22 @@ class ProductListHomeRouteArgs {
 }
 
 /// generated route for
+/// [ProductsCartScreen]
+class ProductsCartRoute extends PageRouteInfo<void> {
+  const ProductsCartRoute({List<PageRouteInfo>? children})
+    : super(ProductsCartRoute.name, initialChildren: children);
+
+  static const String name = 'ProductsCartRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return ProductsCartScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [SplashScreen]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})

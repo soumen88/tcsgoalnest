@@ -1,7 +1,9 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:tcsgoalnest/core/constants/color_constants.dart';
 import 'package:tcsgoalnest/core/repository/method_channel_counter.dart';
+import 'package:tcsgoalnest/core/routing/app_router.dart';
 import 'package:tcsgoalnest/core/table/cart_store_manager.dart';
 import 'package:tcsgoalnest/data/ecommercemodels/product_data_model.dart';
 import 'package:tcsgoalnest/data/ecommercemodels/product_review_model.dart';
@@ -125,7 +127,7 @@ class ProductDescriptionScreen extends StatelessWidget {
             BottomNavigationButton(
               buttonCaption: "Proceed to Buy",
               onButtonPress: () {
-                //TODO: Add to Wishlist
+                context.router.navigate(const ProductsCartRoute());
               },
             ),
           ],

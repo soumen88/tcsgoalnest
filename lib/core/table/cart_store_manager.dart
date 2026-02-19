@@ -22,8 +22,28 @@ class CartStoreManager {
         _logger.log(TAG: _TAG, message: "Cart with id $cartId has been removed from the cart: ${isRemoved ? "Yes" : "No"}");
     }
 
+    Future<(double, int)> getTotalPrice() async {
+        double totalPrice = 0.0;
+        int totalQuantity = 0;
+        final query = _box.query().build();
+        List<CartTrackerData> cartItems = query.find();
+        for(CartTrackerData cartItem in cartItems) {
+            totalPrice += cartItem.price * cartItem.quantity;
+            totalQuantity += cartItem.quantity;
+        }
+        query.close();
+        return (totalPrice, totalQuantity);
+    }
+
     Stream<List<CartTrackerData>> listenToCart(int productId) async* {
         final query = _box.query(CartTrackerData_.productId.equals(productId));
+        final Stream<Query<CartTrackerData>> queryToWatch = query.watch(triggerImmediately: true);
+        Stream<List<CartTrackerData>> rowsInStream = queryToWatch.map((query) => query.find());
+        yield* rowsInStream;
+    }
+
+    Stream<List<CartTrackerData>> listenToAllProductsInCart() async* {
+        final query = _box.query();
         final Stream<Query<CartTrackerData>> queryToWatch = query.watch(triggerImmediately: true);
         Stream<List<CartTrackerData>> rowsInStream = queryToWatch.map((query) => query.find());
         yield* rowsInStream;

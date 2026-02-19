@@ -19,6 +19,7 @@ import '../../ui/ecommercescreens/product_list_home_screen.dart';
 import '../../ui/ecommercescreens/on_boarding_screen.dart';
 import '../../ui/ecommercescreens/product_description_screen.dart';
 import '../../ui/ecommercescreens/ecommerce_splash_screen.dart';
+import '../../ui/ecommercescreens/products_cart_screen.dart';
 import '../../core/utils/on_boarding_enum.dart';
 
 part 'app_router.gr.dart';
@@ -95,6 +96,11 @@ class AppRouter extends RootStackRouter {
       page: EcommerceSplashRoute.page,
       path: "/ecommerceSplash",
       initial: true
+    ),
+    AutoRoute(
+        page: ProductsCartRoute.page,
+        path: "/productscart",
+
     ),
   ];
 }
