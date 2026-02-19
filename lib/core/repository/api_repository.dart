@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:tcsgoalnest/core/constants/app_constants.dart';
 import 'package:tcsgoalnest/core/dependency/injectable_setup.dart';
 import 'package:tcsgoalnest/core/network/dio_utils.dart';
 import 'package:tcsgoalnest/core/utils/logger_util.dart';
 import 'package:tcsgoalnest/data/ecommercemodels/product_data_model.dart';
+import 'package:http/http.dart' as http;
 
 class ApiRepository {
   late Dio dio;
@@ -34,4 +37,5 @@ class ApiRepository {
       });
       return Future.value(productList);
   }
+
 }

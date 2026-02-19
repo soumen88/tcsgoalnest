@@ -51,4 +51,6 @@ class EcommerceSplashBloc extends Bloc<EcommerceSplashScreenEvents, EcommerceSpl
     bool hasUserSignedIn = _keyValueStore.getValue(AppConstants.kHasUserSignedIn) == "yes";
     emit(EcommerceSplashScreenStates.showNextScreen(hasUserSignedIn));
   }
+
+
 }

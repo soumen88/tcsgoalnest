@@ -15,6 +15,7 @@ import 'package:tcsgoalnest/ui/commonwidgets/ecommercesplash/banner_card_widget.
 import 'package:tcsgoalnest/ui/commonwidgets/empty_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/regular_text_widget.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/constants/app_constants.dart';
 import '../../core/constants/color_constants.dart';
@@ -140,7 +141,16 @@ class _EcommerceSplashScreenState extends State<EcommerceSplashScreen> {
                 bottomNavigationBar: SafeArea(
                   child: BottomNavigationButton(
                       buttonCaption: "Let's Explore",
-                      onButtonPress: (){
+                      onButtonPress: () async{
+                        /*var url = Uri.parse("https://www.jiosaavn.com/featured/lets-play-dino-james/uH8dwMs4YmbWCn-BpjaL7g__");
+                        if (!await launchUrl(
+                          url,
+                          mode: LaunchMode.externalApplication,
+                          browserConfiguration: const BrowserConfiguration(showTitle: true),
+                        )) {
+                          throw Exception('Could not launch $url');
+                        }*/
+
                         BlocProvider.of<EcommerceSplashBloc>(context).add(EcommerceSplashScreenEvents.startNextScreen());
                       },
                   ),

@@ -5,6 +5,7 @@ import 'package:tcsgoalnest/core/dependency/injectable_setup.dart';
 import 'package:tcsgoalnest/core/routing/app_router.dart';
 import 'package:tcsgoalnest/core/utils/firebase_remote_config_service.dart';
 
+import 'core/repository/app_links_handler.dart';
 import 'core/utils/default_firebase_options.dart';
 
 void main() async{
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget{
         primaryColor: ColorConstants.kWhiteColor
       ),
       builder: (BuildContext context, Widget? child){
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          AppLinksHandler.init(context);
+        });
         return child!;
       },
     );

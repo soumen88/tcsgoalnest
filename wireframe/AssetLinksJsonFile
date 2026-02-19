@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.tcs.goalnest.tcsgoalnest",
+      "sha256_cert_fingerprints": [
+        "B4:28:03:69:E9:51:1E:B2:A0:8A:16:23:A2:75:74:07:4F:02:B6:06:77:5A:AF:D5:AC:B2:DF:F7:14:EF:85:41"
+      ]
+    }
+  }
+]

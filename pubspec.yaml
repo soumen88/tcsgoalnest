@@ -92,6 +92,7 @@ dependencies:
 
   #Make http requests
   dio: ^5.9.1
+  url_launcher: ^6.3.2
 
   #Google sign in for on boarding users
   google_sign_in: ^7.2.0
@@ -100,6 +101,8 @@ dependencies:
   #Display SVG images in app
   flutter_svg: ^2.2.3
 
+  #Handling deep linking in app
+  app_links: ^7.0.0
 dependency_overrides:
   analyzer: ^9.0.0
 
