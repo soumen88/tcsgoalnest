@@ -25,8 +25,7 @@ Future<void> init() async{
 
 class MyApp extends StatelessWidget{
   final _appRouter = AppRouter();
-  @override
-  Widget build(BuildContext context) {
+  @override  Widget build(BuildContext context) {
     return MaterialApp.router(
       routerDelegate: _appRouter.delegate(),
       routeInformationParser: _appRouter.defaultRouteParser(),
