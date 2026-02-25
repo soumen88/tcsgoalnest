@@ -51,5 +51,7 @@ class AppConstants {
   static const String kHasUserSignedIn = "has_signed_in";
 
   static const String kCommonErrorMessage = "Something went wrong!";
+  //static const String kOSMKey = "2meQgPund8RQQ1DZqTBz";
+
 
 }

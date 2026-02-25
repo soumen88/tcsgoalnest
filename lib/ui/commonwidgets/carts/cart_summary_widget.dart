@@ -10,6 +10,10 @@ import '../regular_text_widget.dart';
 
 
 class CartSummaryWidget extends StatefulWidget {
+  final VoidCallback? moveToNextScreen;
+
+  const CartSummaryWidget({this.moveToNextScreen, super.key});
+
   @override
   State<CartSummaryWidget> createState() => _CartSummaryWidgetState();
 }
@@ -93,7 +97,10 @@ class _CartSummaryWidgetState extends State<CartSummaryWidget> {
                           "Please fill in your shipping details to proceed with your order."),
                       actions: [
                         TextButton(
-                          onPressed: () => Navigator.of(context).pop(),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            widget.moveToNextScreen?.call();
+                          },
                           child: const Text("OK"),
                         )
                       ],

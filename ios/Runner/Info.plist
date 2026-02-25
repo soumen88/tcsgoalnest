@@ -12,6 +12,8 @@
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>NSLocalNetworkUsageDescription</key>
+    <string>This app needs local network access for debugging and communication.</string>
 	<key>CFBundleName</key>
 	<string>tcsgoalnest</string>
 	<key>CFBundlePackageType</key>
@@ -28,6 +30,9 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>GADApplicationIdentifier</key>
+    <!-- Sample AdMob app ID: ca-app-pub-3940256099942544~1458002511 -->
+    <string>805104212172</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

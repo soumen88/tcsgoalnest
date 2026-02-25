@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:tcsgoalnest/core/constants/color_constants.dart';
@@ -15,17 +17,38 @@ void main() async{
 
 Future<void> init() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
+  if(Platform.isIOS){
+    await Firebase.initializeApp(
+      //options: DefaultFirebaseOptions.devConfig
+      /*options: FirebaseOptions(
+          apiKey: "AIzaSyBEWMwWJpGYIoyOg-xUdpw4Atqpo7dtn78",
+          appId: "1:805104212172:android:3d32da279325a68f0aca69",
+          messagingSenderId: "805104212172",
+          projectId: "goalnest-fe00a"
+      )*/
+    );
+  }
+  else{
+    await Firebase.initializeApp(
     name: 'goal-nest',
     options: DefaultFirebaseOptions.devConfig,
   );
+  }
+
   await FirebaseRemoteConfigService().initialize();
   await configureDependencies();
 }
 
 class MyApp extends StatelessWidget{
+  /*@override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Text("ios app running"),
+    );
+  }*/
   final _appRouter = AppRouter();
-  @override  Widget build(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp.router(
       routerDelegate: _appRouter.delegate(),
       routeInformationParser: _appRouter.defaultRouteParser(),

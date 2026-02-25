@@ -12,9 +12,17 @@ class CartStoreManager {
 
     CartStoreManager(Store objectBoxStore) : _box = objectBoxStore.box<CartTrackerData>();
 
+
     Future<void> addToCart(CartTrackerData cartTrackerData) async {
-        int trackIdReceived = await _box.put(cartTrackerData);
-        _logger.log(TAG: _TAG, message: "Cart with id $trackIdReceived has been added to the cart");
+        var existingCartItem = _box.query(CartTrackerData_.productId.equals(cartTrackerData.productId)).build().findFirst();
+        if(existingCartItem != null) {
+            existingCartItem.quantity = cartTrackerData.quantity;
+            await _box.put(existingCartItem);
+            _logger.log(TAG: _TAG, message: "Cart with id ${existingCartItem.cartId} has been updated in the cart with quantity ${existingCartItem.quantity}");
+        } else {
+            int trackIdReceived = await _box.put(cartTrackerData);
+            _logger.log(TAG: _TAG, message: "Cart with id $trackIdReceived has been added to the cart with quantity ${cartTrackerData.quantity}");
+        }  
     }
 
     Future<void> removeFromCart(int cartId) async {

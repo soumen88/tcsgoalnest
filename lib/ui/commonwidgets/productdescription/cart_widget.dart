@@ -45,7 +45,11 @@ class CartWidget extends StatelessWidget {
                   errorMessage: snapshot.error.toString(),
                 );
               } else if (snapshot.hasData) {
-                int itemCount = snapshot.data?.length ?? 0;
+                int quantity = 0;
+
+                if(snapshot.data != null && snapshot.data!.isNotEmpty){
+                  quantity = snapshot.data?.first.quantity ?? 0;
+                }
                 return Positioned(
                   right: -8,
                   top: -8,
@@ -65,9 +69,9 @@ class CartWidget extends StatelessWidget {
                     ),
                     child: Center(
                       child: RegularTextWidget(
-                        textToDisplay: itemCount > 99
+                        textToDisplay: quantity > 99
                             ? '99+'
-                            : itemCount.toString(),
+                            : quantity.toString(),
                         textColor: ColorConstants.kWhiteColor,
                         fontSize: 16,
                         textAlignment: TextAlign.center,

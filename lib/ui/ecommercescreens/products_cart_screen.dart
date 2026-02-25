@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:tcsgoalnest/core/constants/app_constants.dart';
+import 'package:tcsgoalnest/core/routing/app_router.dart';
 
 import '../../core/dependency/injectable_setup.dart';
 import '../../core/schema/cart_tracker_data.dart';
@@ -49,7 +51,13 @@ class ProductsCartScreen extends StatelessWidget {
           }
         },
       ),
-      bottomNavigationBar: SafeArea(child: CartSummaryWidget()),
+      bottomNavigationBar: SafeArea(
+          child: CartSummaryWidget(
+            moveToNextScreen: (){
+              context.router.navigate(const OrdersRoute());
+            },
+          )
+      ),
     );
   }
 }

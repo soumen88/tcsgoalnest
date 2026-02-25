@@ -139,6 +139,22 @@ class OnBoardingRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [OrdersScreen]
+class OrdersRoute extends PageRouteInfo<void> {
+  const OrdersRoute({List<PageRouteInfo>? children})
+    : super(OrdersRoute.name, initialChildren: children);
+
+  static const String name = 'OrdersRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return OrdersScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [PersonSingletonDbInsertScreen]
 class PersonSingletonDbInsertRoute extends PageRouteInfo<void> {
   const PersonSingletonDbInsertRoute({List<PageRouteInfo>? children})

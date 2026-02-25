@@ -20,6 +20,7 @@ import '../../ui/ecommercescreens/on_boarding_screen.dart';
 import '../../ui/ecommercescreens/product_description_screen.dart';
 import '../../ui/ecommercescreens/ecommerce_splash_screen.dart';
 import '../../ui/ecommercescreens/products_cart_screen.dart';
+import '../../ui/ecommercescreens/orders_screen.dart';
 import '../../core/utils/on_boarding_enum.dart';
 
 part 'app_router.gr.dart';
@@ -100,7 +101,11 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
         page: ProductsCartRoute.page,
         path: "/productscart",
-
+    ),
+    AutoRoute(
+      page: OrdersRoute.page,
+      path: "/orders",
+      //initial: true
     ),
   ];
 }

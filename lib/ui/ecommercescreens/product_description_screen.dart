@@ -115,8 +115,19 @@ class ProductDescriptionScreen extends StatelessWidget {
                   flex: 1,
                   child: BottomNavigationButton(
                     buttonCaption: "Decrement",
-                    onButtonPress: () {
-                      MethodChannelCounter.decrement();
+                    onButtonPress: () async {
+                      var count = await MethodChannelCounter.decrement();
+                      var cartTrackerData = CartTrackerData(
+                        productId: productDataModel.productId,
+                        quantity: count,
+                        price: productDataModel.price.toDouble(),
+                        addedToCartAt: DateTime.now(),
+                        productName: productDataModel.name,
+                        productImage: productDataModel.assetImagePath,
+                        productDescription: productDataModel.description,
+                        productCategory: productDataModel.category,
+                      );
+                      _cartStoreManager.addToCart(cartTrackerData);
                     },
                   ),
                 ),
