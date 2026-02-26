@@ -19,8 +19,8 @@ class DisplayLocationWidget extends StatelessWidget {
       ),
       children: [
         TileLayer(
-          //urlTemplate: "https://api.maptiler.com/maps/openstreetmap/{z}/{x}/{y}.png?key=${EnvironmentVariablesGenerator.osmkey}",
-          urlTemplate: "https://api.maptiler.com/maps/openstreetmap/{z}/{x}/{y}.png?key=abc",
+          urlTemplate: "https://api.maptiler.com/maps/openstreetmap/{z}/{x}/{y}.png?key=${EnvironmentVariablesGenerator.osmkey}",
+          //urlTemplate: "https://api.maptiler.com/maps/openstreetmap/{z}/{x}/{y}.png?key=abc",
           tileBuilder: (context, tileWidget, tile) {
             return ColorFiltered(
               colorFilter: const ColorFilter.mode(

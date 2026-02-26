@@ -13,7 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>NSLocalNetworkUsageDescription</key>
-    <string>This app needs local network access for debugging and communication.</string>
+    <string>Goalnest app needs internet access for displaying its products live from server.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Turning on locations helps us to get your address automatically</string>
 	<key>CFBundleName</key>
 	<string>tcsgoalnest</string>
 	<key>CFBundlePackageType</key>

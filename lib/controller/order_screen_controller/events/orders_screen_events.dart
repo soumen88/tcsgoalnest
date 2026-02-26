@@ -7,4 +7,5 @@ part 'orders_screen_events.freezed.dart';
 sealed class OrdersScreenEvents with _$OrdersScreenEvents{
   const factory OrdersScreenEvents.loadCurrentLocation() = LoadCurrentLocationEvent;
   const factory OrdersScreenEvents.changeLocation(String locationName) = ChangeLocationEvent;
+  const factory OrdersScreenEvents.placeOrderOnServer() = PlaceOrderOnServerEvent;
 }

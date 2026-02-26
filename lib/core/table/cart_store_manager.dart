@@ -30,6 +30,11 @@ class CartStoreManager {
         _logger.log(TAG: _TAG, message: "Cart with id $cartId has been removed from the cart: ${isRemoved ? "Yes" : "No"}");
     }
 
+    Future<void> clearCart() async {
+        await _box.removeAll();
+        _logger.log(TAG: _TAG, message: "Cart has been cleared");
+    }
+
     Future<(double, int)> getTotalPrice() async {
         double totalPrice = 0.0;
         int totalQuantity = 0;
@@ -41,6 +46,13 @@ class CartStoreManager {
         }
         query.close();
         return (totalPrice, totalQuantity);
+    }
+
+    Future<List<CartTrackerData>> getCartItems() async {
+        final query = _box.query().build();
+        List<CartTrackerData> cartItems = query.find();
+        query.close();
+        return cartItems;
     }
 
     Stream<List<CartTrackerData>> listenToCart(int productId) async* {

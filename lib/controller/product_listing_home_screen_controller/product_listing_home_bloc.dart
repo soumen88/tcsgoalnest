@@ -33,6 +33,14 @@ class ProductListingHomeBloc extends Bloc<ProductListHomeScreenEvents, ProductLi
         String? hasUserSignedInBefore =  _keyValueStore.getValue(AppConstants.kHasUserSignedIn);
         if(hasUserSignedInBefore != null && hasUserSignedInBefore == "yes"){
           _productListReceived = await _apiRepository.hitServerToGetProducts();
+          var productList =  _apiRepository.hitServerToGetProducts();
+          var usersList =  _apiRepository.hitServerToGetUsers();
+          var result = await Future.wait(
+              [productList, usersList]
+          );
+          _productListReceived = result[0] as List<ProductDataModel>;
+          //_usersListReceived = result[1];
+          
           if(_productListReceived.isEmpty){
             emit(ProductListHomeScreenStates.productErrorView("No products Found to be displayed"));
           }

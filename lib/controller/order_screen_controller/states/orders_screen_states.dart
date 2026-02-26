@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:tcsgoalnest/data/ecommercemodels/location_marker.dart';
 
+import '../../../data/ecommercemodels/order_response_model.dart';
 import '../../../data/ecommercemodels/place_search.dart';
 
 part 'orders_screen_states.freezed.dart';
@@ -11,4 +12,5 @@ sealed class OrdersScreenStates with _$OrdersScreenStates{
   const factory OrdersScreenStates.displayMarkerView(LocationMarker locationMarker, List<PlaceSearch>? placesList) = DisplayLoadingView;
   const factory OrdersScreenStates.loadingView() = LoadingView;
   const factory OrdersScreenStates.errorView(String errorMessage) = ErrorView;
+  const factory OrdersScreenStates.orderPlacedView(OrderResponseModel orderResponseModel) = OrderPlacedView;
 }

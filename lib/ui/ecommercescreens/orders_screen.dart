@@ -2,9 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:tcsgoalnest/controller/order_screen_controller/orders_screen_bloc.dart';
 import 'package:tcsgoalnest/controller/order_screen_controller/states/orders_screen_states.dart';
 import 'package:tcsgoalnest/core/dependency/injectable_setup.dart';
+import 'package:tcsgoalnest/core/routing/app_router.dart';
 import 'package:tcsgoalnest/core/utils/location_utils.dart';
 import 'package:tcsgoalnest/core/utils/logger_util.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/bold_text_widget.dart';
@@ -16,8 +18,11 @@ import 'package:tcsgoalnest/ui/commonwidgets/outline_button_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/regular_text_widget.dart';
 
 import '../../controller/order_screen_controller/events/orders_screen_events.dart';
+import '../../core/constants/image_constants.dart';
 import '../../data/ecommercemodels/location_marker.dart';
+import '../../data/ecommercemodels/order_response_model.dart';
 import '../../data/ecommercemodels/place_search.dart';
+import '../commonwidgets/custom_app_bar.dart';
 
 @RoutePage()
 class OrdersScreen extends StatelessWidget {
@@ -66,7 +71,10 @@ class OrdersScreen extends StatelessWidget {
                     ),
                     bottomNavigationBar: SafeArea(
                       child: BottomNavigationButton(
-                          buttonCaption: "Proceed to checkout"
+                          buttonCaption: "Proceed to checkout",
+                          onButtonPress: () {
+                            BlocProvider.of<OrdersScreenBloc>(context).add(OrdersScreenEvents.placeOrderOnServer());
+                          }
                       ),
                     ),
                   );
@@ -76,6 +84,38 @@ class OrdersScreen extends StatelessWidget {
             },
             errorView: (String errorMessage) {
               return DisplayErrorWidget(errorMessage: errorMessage);
+            },
+            orderPlacedView: (OrderResponseModel orderResponseModel) {
+              return Scaffold(
+                appBar: CustomAppBar(),
+                body: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    BoldTextWidget(
+                        textToDisplay: "Order placed successfully with order id ${orderResponseModel.orderId}",
+                        textAlignment: TextAlign.center,
+                        fontSize: 28,
+                    ),
+                    Lottie.asset(
+                      ImageConstants.kSuccessJson,
+                      width: 200,
+                      height: 200,
+                    ),
+                    RegularTextWidget(
+                        textToDisplay: "Your order will be delivered to you in 2-3 business days"
+                    ),
+                  ],
+                ),
+                bottomNavigationBar: SafeArea(
+                  child: BottomNavigationButton(
+                      buttonCaption: "Go to home",
+                      onButtonPress: () {
+
+                        context.router.replace(const EcommerceSplashRoute());
+                      }
+                  ),
+                ),
+              );
             },
           );
         },
