@@ -3,6 +3,8 @@ class AppConstants {
   static const kAppSubtitle = "Your perfect Money Tracker";
 
   static const kStringUserName = "user_name";
+  static const kStringUserEmail = "user_email";
+  static const kStringUserIdFromApi = "user_id_from_api";
   static const kGoalJsonKey = "goal_types";
   static const String kServerEndDate = "server_end_date";
   static const String kExpiredMessage = "Your server hosting has expired. If you are the owner Please contact the administrator at admin@bigrock.in  or developer to renew.";
