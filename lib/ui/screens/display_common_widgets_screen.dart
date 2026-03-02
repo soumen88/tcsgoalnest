@@ -1,4 +1,7 @@
+import 'dart:isolate';
+
 import 'package:auto_route/annotations.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tcsgoalnest/core/utils/logger_util.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/bold_text_widget.dart';
@@ -8,10 +11,33 @@ import 'package:tcsgoalnest/ui/commonwidgets/outline_button_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/regular_text_widget.dart';
 
 @RoutePage()
-class DisplayCommonWidgetsScreen extends StatelessWidget {
-  final _logger = LoggerUtil();
-  final _TAG = "DisplayCommonWidgetsScreen";
+class DisplayCommonWidgetsScreen extends StatefulWidget {
+  @override
+  State<DisplayCommonWidgetsScreen> createState() => _DisplayCommonWidgetsScreenState();
+}
 
+class _DisplayCommonWidgetsScreenState extends State<DisplayCommonWidgetsScreen> {
+  final _logger = LoggerUtil();
+
+  final _TAG = "DisplayCommonWidgetsScreen";
+  String _result = '';
+
+  void _performHeavyComputation() async {
+    _logger.log(TAG: _TAG, message:  'Current Isolate Name: ${Isolate.current.debugName}');
+    final result = await compute<int, String>(heavyComputation, 1000000);
+    setState(() {
+      _result = result;
+    });
+  }
+
+  static String heavyComputation(int iterations) {
+    print('Current Isolate Name: ${Isolate.current.debugName}');
+    double sum = 0;
+    for (int i = 0; i < iterations; i++) {
+      sum += i * i;
+    }
+    return 'Result: $sum';
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +79,13 @@ class DisplayCommonWidgetsScreen extends StatelessWidget {
             ),
             ItalicTextWidget(
                 textToDisplay: "Building and maintaining a font collection on the computer you use for design work is an important part of life as a designer. "
-            )
+            ),
+            OutlineButtonWidget(
+              onButtonPress: _performHeavyComputation,
+              buttonCaption :'Run Heavy Computation',
+            ),
+            SizedBox(height: 20),
+            Text(_result),
           ],
         ),
       ),
