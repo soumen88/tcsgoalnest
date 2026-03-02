@@ -65,7 +65,7 @@ class ApiRepository {
       List<UsersResponseModel> usersList = [];
       for(var individualUser in usersListFromServer){
         UsersResponseModel currentUser = UsersResponseModel.fromJson(individualUser);
-        _logger.log(TAG: _TAG, message: "Current user: ${currentUser.userId} ${currentUser.username} ${currentUser.email} ${currentUser.password}");
+        //_logger.log(TAG: _TAG, message: "Current user: ${currentUser.userId} ${currentUser.username} ${currentUser.email} ${currentUser.password}");
         usersList.add(currentUser);
       }
       return Future.value(usersList);

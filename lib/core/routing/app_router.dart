@@ -38,6 +38,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
         page: DisplayCommonWidgetsRoute.page,
         path: "/commonwidgets",
+        initial: true
     ),
     AutoRoute(
         page: StreamExampleRoute.page,
@@ -96,7 +97,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(
       page: EcommerceSplashRoute.page,
       path: "/ecommerceSplash",
-      initial: true
+      //initial: true
     ),
     AutoRoute(
         page: ProductsCartRoute.page,

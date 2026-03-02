@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:math';
 import 'package:tcsgoalnest/controller/product_listing_home_screen_controller/events/product_list_home_screen_events.dart';
 import 'package:tcsgoalnest/controller/product_listing_home_screen_controller/states/product_list_home_screen_states.dart';
 import 'package:tcsgoalnest/core/constants/app_constants.dart';
@@ -9,12 +10,14 @@ import 'package:tcsgoalnest/core/utils/filter_enum.dart';
 import 'package:tcsgoalnest/core/utils/on_boarding_enum.dart';
 import 'package:tcsgoalnest/core/utils/pretty_logger_util.dart';
 import 'package:tcsgoalnest/data/ecommercemodels/product_data_model.dart';
+import 'package:tcsgoalnest/data/ecommercemodels/users_response_model.dart';
 
 class ProductListingHomeBloc extends Bloc<ProductListHomeScreenEvents, ProductListHomeScreenStates>{
   final _logger = locator<PrettyLoggerUtil>();
   final _TAG = "ProductListingHomeBloc";
   final ApiRepository _apiRepository = ApiRepository();
   List<ProductDataModel> _productListReceived = [];
+  List<UsersResponseModel> _usersListReceived = [];
   final _keyValueStore = locator<KeyValueStoreManager>();
 
   ProductListingHomeBloc() : super(const ProductListHomeScreenStates.productLoadingView()){
@@ -39,7 +42,15 @@ class ProductListingHomeBloc extends Bloc<ProductListHomeScreenEvents, ProductLi
               [productList, usersList]
           );
           _productListReceived = result[0] as List<ProductDataModel>;
-          //_usersListReceived = result[1];
+          _usersListReceived = result[1] as List<UsersResponseModel>;
+          if(_usersListReceived.isNotEmpty){
+            UsersResponseModel randomUser = _usersListReceived[Random().nextInt(_usersListReceived.length)];
+            _logger.log(TAG: _TAG, message: "Randome user details $randomUser");
+            _keyValueStore.insertKey(keyName: AppConstants.kUserEmail, value: randomUser.email);
+            _keyValueStore.insertKey(keyName: AppConstants.kStringUserIdFromApi, value: randomUser.userId.toString());
+            _keyValueStore.insertKey(keyName: AppConstants.kUserName, value: randomUser.username);
+          }
+          
           
           if(_productListReceived.isEmpty){
             emit(ProductListHomeScreenStates.productErrorView("No products Found to be displayed"));
