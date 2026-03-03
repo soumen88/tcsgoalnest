@@ -118,9 +118,6 @@ dependencies:
   #Sending automated emails in flutter app
   emailjs: ^4.0.0
 
-  #Files from camera shall be uploaded on firebase
-  firebase_storage: ^13.0.6
-
 dependency_overrides:
   analyzer: ^10.0.0
 

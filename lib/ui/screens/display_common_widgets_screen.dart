@@ -1,8 +1,11 @@
+import 'dart:io';
 import 'dart:isolate';
 
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:tcsgoalnest/core/constants/image_constants.dart';
+import 'package:tcsgoalnest/core/repository/file_upload_service.dart';
 import 'package:tcsgoalnest/core/utils/logger_util.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/bold_text_widget.dart';
 import 'package:tcsgoalnest/ui/commonwidgets/filled_button_widget.dart';
@@ -18,26 +21,35 @@ class DisplayCommonWidgetsScreen extends StatefulWidget {
 
 class _DisplayCommonWidgetsScreenState extends State<DisplayCommonWidgetsScreen> {
   final _logger = LoggerUtil();
-
   final _TAG = "DisplayCommonWidgetsScreen";
-  String _result = '';
+  String _outputResult = "No Calculation Performed";
+  final FileUploadService _fileUploadService = FileUploadService();
+  ///Comparison between main thread and a background (worker) thread
+  ///
+  Future<void> startWorker() async{
+    _logger.log(TAG: _TAG, message: "Before Triggering worker thread ${Isolate.current.debugName}");
+      ///Left side indicates the input port, and right side will be the output port
+    _outputResult = await compute<int, String>(doHeavyCalculation, 150000000);
+     _logger.log(TAG: _TAG, message: "Result received after doing work $_outputResult ${Isolate.current.debugName}");
+     setState(() {
 
-  void _performHeavyComputation() async {
-    _logger.log(TAG: _TAG, message:  'Current Isolate Name: ${Isolate.current.debugName}');
-    final result = await compute<int, String>(heavyComputation, 1000000);
-    setState(() {
-      _result = result;
-    });
+     });
+
   }
 
-  static String heavyComputation(int iterations) {
-    print('Current Isolate Name: ${Isolate.current.debugName}');
-    double sum = 0;
-    for (int i = 0; i < iterations; i++) {
-      sum += i * i;
+  static String doHeavyCalculation(int numberOfTimes){
+    print("Start time of calculation ${DateTime.now()} working on thread ${Isolate.current.debugName}");
+    double sumOfSquares = 0;
+    for(int i = 0; i < numberOfTimes; i++){
+      int squareOfNumber = i * i;
+      sumOfSquares = sumOfSquares + squareOfNumber;
     }
-    return 'Result: $sum';
+    //_logger.log(TAG: _TAG, message: "End time of calculation ${DateTime.now()} output $sumOfSquares working on thread  ${Isolate.current.debugName}");
+    print("End time of calculation ${DateTime.now()} working on thread ${Isolate.current.debugName}");
+    return "output $sumOfSquares working on thread ";
   }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,11 +93,31 @@ class _DisplayCommonWidgetsScreenState extends State<DisplayCommonWidgetsScreen>
                 textToDisplay: "Building and maintaining a font collection on the computer you use for design work is an important part of life as a designer. "
             ),
             OutlineButtonWidget(
-              onButtonPress: _performHeavyComputation,
-              buttonCaption :'Run Heavy Computation',
+                buttonCaption: "Calculate square",
+                onButtonPress: (){
+                  startWorker();
+                },
             ),
-            SizedBox(height: 20),
-            Text(_result),
+            BoldTextWidget(
+                textToDisplay: "Result after heavy calculation - $_outputResult",
+                fontSize: 20,
+            ),
+            OutlineButtonWidget(
+                buttonCaption: "Test Upload File",
+                onButtonPress: () async{
+                    await _fileUploadService.getImageFileFromAssets(ImageConstants.kLogoOnly).then((File fileTobeUploaded) async{
+                       //await FileUploadService().uploadFileToBucket(fileTobeUploaded.path);
+                       await _fileUploadService.uploadFileToCloudinary(
+                        filePath: fileTobeUploaded.path,
+                        cloudName: "dac8gxz3w",
+                        apiKey: "716147748745242",
+                        apiSecret: "sg6x_AwYIsXLkKahD0fYFZYztZk",
+                      
+                      );
+                    });
+                    //_logger.log(TAG: _TAG, message: "Path where file was stored ${logoFile.path}");
+                },
+            )
           ],
         ),
       ),
