@@ -4,6 +4,7 @@ import 'dart:isolate';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:tcsgoalnest/core/constants/image_constants.dart';
 import 'package:tcsgoalnest/core/repository/file_upload_service.dart';
 import 'package:tcsgoalnest/core/utils/logger_util.dart';
@@ -24,6 +25,8 @@ class _DisplayCommonWidgetsScreenState extends State<DisplayCommonWidgetsScreen>
   final _TAG = "DisplayCommonWidgetsScreen";
   String _outputResult = "No Calculation Performed";
   final FileUploadService _fileUploadService = FileUploadService();
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
   ///Comparison between main thread and a background (worker) thread
   ///
   Future<void> startWorker() async{
@@ -49,6 +52,17 @@ class _DisplayCommonWidgetsScreenState extends State<DisplayCommonWidgetsScreen>
     return "output $sumOfSquares working on thread ";
   }
 
+  @override
+  void initState() {
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    var initializationSettingsAndroid =
+    AndroidInitializationSettings('@mipmap/ic_launcher');
+    var initializationSettingsIOS = IOSInitializationSettings();
+    var initializationSettings = InitializationSettings(
+        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+    flutterLocalNotificationsPlugin.initialize(settings: initializationSettings);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +130,18 @@ class _DisplayCommonWidgetsScreenState extends State<DisplayCommonWidgetsScreen>
                       );
                     });
                     //_logger.log(TAG: _TAG, message: "Path where file was stored ${logoFile.path}");
+                },
+            ),
+            OutlineButtonWidget(
+                buttonCaption: "Request notification permission",
+                onButtonPress: () async{
+                    bool isGranted = await _fileUploadService.isAndroidPermissionGranted();
+                    if(!isGranted){
+                        await _fileUploadService.requestNotificationPermission();
+                    }
+                    else{
+                      await _fileUploadService.showNotification();
+                    }
                 },
             )
           ],

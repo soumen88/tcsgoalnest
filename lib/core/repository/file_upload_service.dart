@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart' as pathPlugin;
@@ -71,13 +72,7 @@ class FileUploadService {
   /// [apiSecret]: Your Cloudinary API secret.
   /// [publicId]: The desired public id for the uploaded image (optional).
   /// Returns the Cloudinary response.
-  Future<Response?> uploadFileToCloudinary({
-    required String filePath,
-    required String cloudName,
-    required String apiKey,
-    required String apiSecret,
-    String? publicId,
-  }) async {
+  Future<Response?> uploadFileToCloudinary({required String filePath, required String cloudName, required String apiKey, required String apiSecret, String? publicId,}) async {
     final url = 'https://api.cloudinary.com/v1_1/$cloudName/image/upload';
     try {
       final file = await MultipartFile.fromFile(filePath);
@@ -115,4 +110,59 @@ class FileUploadService {
       return null;
     }
   }
+
+  Future<bool> isAndroidPermissionGranted() async {
+    if (Platform.isAndroid) {
+      final bool granted =
+          await FlutterLocalNotificationsPlugin()
+              .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin
+          >()
+              ?.areNotificationsEnabled() ??
+              false;
+
+      _logger.log(TAG: _TAG, message: "Granted notification permission");
+      return granted;
+    }
+    return false;
+    }
+
+  Future<void> showNotification() async {
+    const AndroidNotificationDetails androidNotificationDetails =
+    AndroidNotificationDetails(
+      'your channel id',
+      'your channel name',
+      channelDescription: 'your channel description',
+      importance: Importance.max,
+      priority: Priority.high,
+      ticker: 'ticker',
+    );
+    const NotificationDetails notificationDetails = NotificationDetails(
+      android: androidNotificationDetails,
+    );
+    await FlutterLocalNotificationsPlugin().show(
+      id: 123,
+      title: 'plain title',
+      body: 'plain body',
+      notificationDetails: notificationDetails,
+      payload: 'item x',
+    );
+  }
+
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+// After initializing the plugin (e.g. in initState or main),
+// request permission when needed:
+
+  Future<void> requestNotificationPermission() async {
+  final androidPlugin = flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin>();
+
+  if (androidPlugin != null) {
+    await androidPlugin.requestNotificationsPermission();
+  }
+
+  
+}
 }

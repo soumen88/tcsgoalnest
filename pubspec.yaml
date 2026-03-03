@@ -118,6 +118,9 @@ dependencies:
   #Sending automated emails in flutter app
   emailjs: ^4.0.0
 
+  #display status on notifications
+  flutter_local_notifications: ^20.1.0
+
 dependency_overrides:
   analyzer: ^10.0.0
 
